@@ -92,6 +92,8 @@ erDiagram
         int score
         bool is_downvote
         bool payout_eligible
+        decimal fraud_score
+        decimal leaderboard_weight
         datetime created_at
     }
 
@@ -158,6 +160,14 @@ erDiagram
   earlier draft of this diagram had it as one-to-zero-or-one, which
   silently contradicted that threat model; caught during review, corrected
   here.
+- `RATING.fraud_score` and `.leaderboard_weight` are the fields
+  `vote-integrity.md` sec. 3-4 compute and consume: `fraud_score` drives
+  the three-band decision (full weight / reduced weight, not payout-
+  eligible / rejected), and `leaderboard_weight` is its output -- the
+  actual multiplier `tokenomics.md` sec. 5's engagement score applies to
+  this rating. Kept as two fields rather than one so the raw fraud signal
+  and its downstream effect on ranking stay separately inspectable for
+  appeals (`vote-integrity.md` sec. 7).
 - The dispute/arbitration states in `p2p-rendering.md` sec. 2's node
   lifecycle (Disputed, Arbitration) are not separate entities here --
   they're represented by multiple `RENDER_ATTEMPT` rows against the same

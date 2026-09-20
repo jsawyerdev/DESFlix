@@ -28,46 +28,89 @@ flowchart LR
 ```
 
 ### Stage 1 -- Automated compliance
-Checkable, policy-based, no subjective judgment:
-- Prohibited content categories (CSAM, non-consensual real-person deepfakes,
-  hate content, etc. -- full policy list is a Trust & Safety artifact, not
-  duplicated here).
-- Rights/ownership attestation present and internally consistent (matches
-  creator account, no conflicting prior claim in the system).
-- AI-origin disclosure metadata present and accurate (see sec. 4).
-- Plagiarism/duplication check against existing catalog and known public
-  works (embedding-similarity search against script/story and against
-  rendered frames).
+Checkable, policy-based, no subjective judgment. Each check names the
+general technique category it would use; none of these are claimed as
+solved or vendor-specific -- they're established categories of technique
+(policy classification, embedding similarity), not a promise about
+detection accuracy, which is unverifiable without a pilot.
+
+| Check | Method | Decision on trigger |
+|---|---|---|
+| Prohibited content (CSAM, non-consensual real-person deepfakes, hate content, etc.) | Policy classifier scored against the full Trust & Safety category list (not duplicated here) | Auto-reject, no appeal path for the highest-severity categories; routed to human Trust & Safety review for borderline categories |
+| Rights/ownership attestation | Consistency check: attestation matches creator account, no conflicting prior claim in `CREATOR_PROJECT` records | Auto-reject with the specific conflict cited; creator can resubmit with corrected attestation |
+| AI-origin disclosure accuracy | Cross-check declared pipeline stages (script/voice/visual) against render job metadata from Stage 2 of `dataflows.md` flow 1 | Mismatch auto-rejects with the specific discrepancy; this is the one check that would otherwise let a creator understate AI involvement undetected |
+| Plagiarism / duplication | Embedding-similarity search: script/story text against the catalog and known public works; perceptual-hash sampling of rendered frames against the catalog | Similarity above a high threshold (e.g., >0.92 on the similarity metric) does not auto-reject -- near-duplicate isn't necessarily plagiarism (parody, homage, genre convention all score high) -- it routes to Stage 5 curator with the matched source cited, so a human makes the call a similarity score can't |
 
 ### Stage 2 -- Automated technical QC
-Objective production-quality checks that do not require judging *taste*:
-- Audio/video sync within tolerance.
-- No unresolved rendering artifacts above a defined visual-QA threshold
-  (banding, temporal flicker, model "hallucination" artifacts like extra
-  fingers/limbs, text corruption in in-scene signage, etc.).
-- Consistent character/asset identity across shots (a known failure mode of
-  generative video: the same character looking different scene-to-scene).
-- Loudness/format/delivery-spec compliance (mirrors standard broadcast QC
-  practice, adapted to a generative pipeline).
+Objective production-quality checks that do not require judging *taste*.
+Same caveat as Stage 1: technique categories are named, accuracy is not
+claimed.
+
+| Check | Method | Decision on trigger |
+|---|---|---|
+| Audio/video sync | Cross-correlation of the audio waveform against mouth-movement/timing markers; tolerance band, e.g. under 80ms drift | Above tolerance: auto-reject, cites the timestamp and measured drift |
+| Rendering artifacts | Frame-level anomaly scoring against a reference distribution (banding, temporal flicker, model "hallucination" artifacts like extra fingers/limbs, text corruption in in-scene signage) | Flagged-frame rate above a threshold auto-rejects; a low flagged-frame rate is sampled for a fast human spot-check rather than auto-passed, since anomaly scores have real false-positive/false-negative rates that aren't known without a pilot |
+| Character/asset identity consistency | Face/asset embedding similarity tracked scene-to-scene for the same named character (the generative-pipeline failure mode where a character's appearance drifts across shots) | Similarity below a threshold (e.g., under 0.85 between consecutive appearances) auto-rejects, citing the specific shots that disagree |
+| Loudness / format / delivery-spec | Mirrors standard broadcast QC practice, adapted to a generative pipeline | Auto-reject with the specific spec violated |
 
 ### Stage 3 -- Automated format rules
-- **Runtime floor** enforces "no shorts": content below the minimum runtime
-  threshold is rejected at this stage, full stop. Threshold is a tunable
-  platform parameter (open question, see sec. 5) -- e.g., an episode minimum and
-  a separate film minimum, both well above short-form-clip length.
-- Trailers, recaps, and behind-the-scenes featurettes are the one carve-out
-  that legitimately needs to be shorter than the runtime floor; they are
-  tagged as a distinct content type at ingest so the floor doesn't
-  accidentally block legitimate marketing assets while still blocking
-  short-form filler dressed up as "episodes."
+
+**The check.** `EPISODE_OR_FILM.runtime_seconds` is compared against a
+floor keyed to `EPISODE_OR_FILM.content_type`, declared by the creator at
+ingest and not editable after Stage 1 (so a creator can't relabel a short
+as a "film" post hoc to dodge the floor):
+
+| Declared content type | Default runtime floor | Rationale |
+|---|---|---|
+| Episode (series/mini-series) | 15 minutes | Below any broadcast or streaming norm for a standalone episode; well outside short-form-clip range (under 60s) by more than an order of magnitude, so it costs nothing to set the floor conservatively low rather than guess a "correct" runtime. |
+| Film / special | 40 minutes | Below TV-movie/special norms but clearly not a clip. |
+| Trailer / recap / featurette | No floor, but capped at 20% of the parent title's runtime | Exempt from the floor by design (see below), capped so the exemption itself can't be used to publish a full "episode" mislabeled as a trailer. |
+
+Below the floor: automatic rejection at Stage 3, no human review needed --
+this is the one purely mechanical check in the whole pipeline. Rejection
+message states the measured runtime and the floor, so it is immediately
+actionable for the creator.
+
+**Anti-fragmentation check.** A per-episode floor alone doesn't stop a
+creator from technically clearing it while still shipping short-form
+content: uploading a "season" of eleven 15-minute episodes that are each
+mostly padding, or splitting what is narratively one 12-minute short into
+three 4-minute "episodes" to dodge relabeling. Stage 3 also computes, per
+season/project: mean episode runtime and its variance. If mean runtime is
+within 20% of the floor AND episode count exceeds 8, the season is not
+auto-rejected (short seasons of legitimately short-format episodes exist,
+e.g. some comedy formats) but is flagged and routed to Stage 5 curator
+review with the fragmentation signal attached, instead of proceeding
+straight to Stage 4. This is a judgment call the pipeline surfaces rather
+than resolves automatically -- a heuristic, not a proof of gaming, stated
+as such rather than auto-rejecting on a pattern that has legitimate
+explanations too.
+
+**The carve-out.** Trailers, recaps, and behind-the-scenes featurettes are
+tagged as a distinct `content_type` at ingest, specifically so the floor
+doesn't block legitimate marketing assets while the runtime cap above
+stops the tag from becoming a loophole.
 
 ### Stage 4 -- Community jury review
 A panel of verified, reputation-weighted viewers (not the general public
 vote used for the leaderboard -- a separate, smaller, higher-trust pool,
 because this stage's output gates publication, unlike leaderboard ratings
 which are post-publication signal). Panel composition and payout mechanics
-mirror the anti-Sybil controls in `tokenomics.md`, since a gameable jury is
-exactly the same failure mode as a gameable leaderboard.
+mirror the anti-Sybil controls documented in full in
+[`vote-integrity.md`](./vote-integrity.md), since a gameable jury is
+exactly the same failure mode as a gameable leaderboard, using the same
+`ACCOUNT.reputation_score` and fraud-signal infrastructure rather than a
+separate system built to be a second attack surface.
+
+**The check.** A panel of 15-25 jurors is drawn from accounts above a
+reputation floor (see `vote-integrity.md` for how that score is computed),
+weighted-sampled so no single juror pool serves too many consecutive
+titles from the same creator (a collusion vector: a creator's own
+associates disproportionately drawing jury duty on that creator's work).
+Each juror casts pass/fail plus optional notes. Pass threshold: weighted
+approval at or above 65%. Below threshold: routed back to the creator as
+revise-and-resubmit with the aggregated (anonymized) juror notes, not an
+outright kill -- Stage 4 is a quality bar, not a one-shot judgment.
 
 ### Stage 5 -- Professional curator review
 Paid human editorial reviewers, the direct analog of a streamer's
@@ -77,6 +120,18 @@ acquisitions/editorial team. This stage exists specifically because Stage
 publication and are the accountable, appealable decision (creators can
 appeal a rejection; automated-stage rejections are also appealable but
 resolve faster since they're checking objective criteria).
+
+**The check.** Titles are assigned to a curator from a genre-matched pool
+(a comedy specialist doesn't review sci-fi as a default, though curators
+can pick up cross-genre work). Conflict-of-interest check: a curator with
+any prior working or financial relationship to the submitting creator is
+excluded from that title's queue -- checked against a declared-relationship
+list, not inferred. SLA: initial decision within 5 business days of
+clearing Stage 4, tracked so a backlog becomes visible rather than silently
+stalling creators. Decision options: green-light (publish), reject (with
+editorial notes, appealable), or conditional (specific revision requested,
+resubmits at Stage 4 rather than Stage 1 -- the compliance and technical
+findings don't need re-checking, the story does).
 
 ## 2. Why an automated-only gate is explicitly rejected here
 
@@ -127,10 +182,18 @@ viewer transparency and advertiser brand-safety review (`dataflows.md` flow 4),
 and plausibly for regulatory disclosure requirements in some jurisdictions
 (unverified, flagged consistent with `ASSUMPTIONS_AND_RISK.md` sec. 5).
 
-## 5. Open parameters (explicitly not decided here)
+## 5. Open parameters
 
-- Exact runtime floor for "no shorts" (episode minimum, film minimum).
-- Community jury pass threshold and panel size.
-- Cadence for rubric revision.
+Stage 3's runtime floors, its anti-fragmentation heuristic's thresholds,
+and Stage 4's panel size/pass threshold now have stated defaults above --
+they're pilot-tunable, not undecided; the numbers are a defensible
+starting point, not a claim that they're already calibrated against real
+data. Still genuinely open:
+
+- Cadence for Stage 5 rubric revision.
 - Whether Stage 5 curators are platform employees, a paid contractor pool,
   or a hybrid -- a headcount/cost decision outside this blueprint's scope.
+- Calibration of Stage 1-2's automated thresholds (similarity score,
+  drift tolerance, artifact rate) against real labeled data -- the values
+  given are reasonable starting points, not validated ones; see the
+  validation requirement in sec. 2.

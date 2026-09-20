@@ -100,12 +100,14 @@ The same identity/reputation service backs rating payouts, community jury
 eligibility (`content-quality-gates.md` Stage 4), and node-operator
 staking (`p2p-rendering.md` sec. 6) -- one investment in anti-Sybil
 infrastructure, reused across three attack surfaces, rather than three
-separate ad hoc defenses:
+separate ad hoc defenses. The full signal set, scoring, decision bands,
+and Sybil-cluster detection process are in
+[`vote-integrity.md`](./vote-integrity.md); summarized here:
 
 - Proof-of-personhood at account creation (mechanism unspecified -- a
-  build-vs-buy decision, real vendors exist in this space per
-  `ASSUMPTIONS_AND_RISK.md` sec. 2.1/sec. 3, not named here to avoid asserting a
-  specific vendor's current reliability without verification).
+  build-vs-buy decision; real vendors exist per `ASSUMPTIONS_AND_RISK.md`
+  sec. 2.1/sec. 3, not named here to avoid asserting a specific vendor's
+  current reliability without verification).
 - Reputation score per account: age, verification level, historical rating
   behavior vs. eventual community/curator consensus (accounts that
   consistently rate in line with eventual consensus gain weight; accounts

@@ -3,15 +3,14 @@
 **Stories an AI can render, that still have to earn their spot.**
 
 DESFlix is a streaming platform for AI-generated series, mini-series,
-films, and comedy, built on one bet: the bottleneck in AI content isn't
-generation, it's taste. Anyone can produce video now. Almost none of it is
-worth watching. DESFlix exists to be the place where that bar is real --
-five review stages between a script and a published title, nothing under
-a full episode ships, and the rendering compute that makes it affordable
-to independent writers comes from a distributed P2P network instead of a
-studio's server farm. Viewers get paid to rate what they watch. What
-people actually want more of decides the leaderboard -- and what earns
-advertiser placement.
+films, and comedy, built on one bet: the bottleneck in AI content is
+taste, not generation. Anyone can produce video now. Almost none of it is
+worth watching. DESFlix enforces that bar -- five review stages between a
+script and a published title, nothing under a full episode ships, and the
+rendering compute that makes it affordable to independent writers comes
+from a distributed P2P network instead of a studio's server farm.
+Viewers get paid to rate what they watch. What people actually want more
+of decides the leaderboard -- and what earns advertiser placement.
 
 This repo is the complete pre-build blueprint: architecture, workflow,
 data model, token economics, and working UI mockups. No application code
@@ -112,13 +111,12 @@ in `mockups/index.html`'s "UI design references" section.
 ## What makes it different
 
 - **A quality gate with teeth.** Five stages, and the human curator stage
-  is mandatory for every title -- not because automated slop-detection is
-  impossible, but because subjective creative quality is not the kind of
-  thing current classifiers judge at an editorial standard, and claiming
-  otherwise would be the one dishonest sentence in this pitch.
-- **P2P rendering, not just cloud rendering.** Independent creators get
-  production-grade compute without production-grade cloud bills, verified
-  by redundant runs instead of trust.
+  is mandatory for every title, because subjective creative quality isn't
+  the kind of thing current classifiers judge at an editorial standard --
+  claiming otherwise would be the one dishonest sentence in this pitch.
+- **P2P compute at production quality.** Independent creators get
+  production-grade rendering without production-grade cloud bills,
+  verified by redundant runs instead of trust.
 - **Getting paid to have taste.** Rating pays -- capped and identity-gated,
   so the reward can't be farmed at the scale that would corrupt it -- and
   the public leaderboard runs on a separate, harder-to-game signal so the
@@ -149,6 +147,9 @@ in `mockups/index.html`'s "UI design references" section.
 - [`docs/tokenomics.md`](./docs/tokenomics.md) -- the payout and
   leaderboard mechanism in full, including the open ledger decision (`D1`)
   and the anti-Sybil design (`D2`).
+- [`docs/vote-integrity.md`](./docs/vote-integrity.md) -- the full no-
+  spam-votes pipeline: signals, scoring, the three-band decision logic,
+  Sybil-cluster detection, appeals, and what it explicitly doesn't solve.
 - [`docs/advertising-product-placement.md`](./docs/advertising-product-placement.md)
   -- the placement marketplace, planned vs. reactive placement, and
   disclosure requirements.
