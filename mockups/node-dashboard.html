@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>DESFlix — Node Dashboard</title>
+<title>DESFlix &mdash; Node Dashboard</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -15,18 +15,20 @@
     <a href="creator-studio.html">Creator Studio</a>
     <a class="active" href="node-dashboard.html">Node Dashboard</a>
     <a href="wallet.html">Wallet</a>
+    <a href="storyboard.html">Storyboard</a>
   </div>
   <div class="navright">
-    <div class="token-pill">&#9679; 1,240 DSF</div>
+    <div class="token-pill">1,240 DSF</div>
     <div class="avatar">JS</div>
   </div>
 </nav>
 
 <div class="wrap" style="padding-top:24px;">
-  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; flex-wrap:wrap; gap:10px;">
-    <h1 style="margin:0; font-size:24px;">Node Operator Dashboard</h1>
-    <span class="badge gate">Node status: Eligible</span>
+  <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:6px; flex-wrap:wrap; gap:10px;">
+    <h1 style="margin:0; font-size:22px;">Node Operator Dashboard</h1>
+    <span class="badge pass">Node status: Eligible</span>
   </div>
+  <div class="freshness" style="margin-bottom:18px;">Stats as of 3m ago</div>
 
   <div class="grid-4" style="margin-bottom:24px;">
     <div class="stat-tile">
@@ -36,15 +38,17 @@
     <div class="stat-tile">
       <div class="label">Reliability reputation</div>
       <div class="value">97.2%</div>
-      <div class="delta up">&#9650; 0.4% this week</div>
+      <div class="delta up">&#9650; 0.4% this week <span class="tag-estimated">est.</span></div>
     </div>
     <div class="stat-tile">
       <div class="label">Capability tier</div>
-      <div class="value">Tier 2 — GPU 24GB</div>
+      <div class="value">Tier 2 &middot; 24GB GPU</div>
+      <div class="freshness stale">Benchmark verified 19d ago &mdash; re-verification due</div>
     </div>
     <div class="stat-tile">
       <div class="label">Earnings (30d)</div>
-      <div class="value" style="color:var(--gold);">6,140 DSF</div>
+      <div class="value">6,140 DSF</div>
+      <div class="tag-observed">observed, settled</div>
     </div>
   </div>
 
@@ -62,53 +66,64 @@
       </thead>
       <tbody>
         <tr>
-          <td>job-4471</td>
-          <td>Standard (2x)</td>
-          <td><span class="badge gate">Verified</span></td>
-          <td>Match — 1 peer</td>
-          <td style="color:var(--gold);">+18 DSF</td>
+          <td><code>job-4471</code></td>
+          <td>Standard (2&times;)</td>
+          <td><span class="badge pass">Verified</span></td>
+          <td>Match &mdash; 1 peer</td>
+          <td>+18 DSF</td>
         </tr>
         <tr>
-          <td>job-4398</td>
-          <td>High (3x)</td>
-          <td><span class="badge gate">Verified</span></td>
-          <td>Match — 2 peers</td>
-          <td style="color:var(--gold);">+31 DSF</td>
+          <td><code>job-4398</code></td>
+          <td>High (3&times;)</td>
+          <td><span class="badge pass">Verified</span></td>
+          <td>Match &mdash; 2 peers</td>
+          <td>+31 DSF</td>
         </tr>
         <tr>
-          <td>job-4390</td>
-          <td>Standard (2x)</td>
-          <td style="color:var(--down); font-weight:600;">Disputed</td>
-          <td>Disagreement — sent to arbitration</td>
-          <td style="color:var(--text-dim);">Pending</td>
+          <td><code>job-4390</code></td>
+          <td>Standard (2&times;)</td>
+          <td><span class="badge fail">Disputed</span></td>
+          <td>Disagreement &mdash; sent to arbitration</td>
+          <td style="color:var(--text-tertiary);">Pending</td>
         </tr>
         <tr>
-          <td>job-4381</td>
+          <td><code>job-4381</code></td>
           <td>Low (spot-check)</td>
-          <td><span class="badge gate">Verified</span></td>
+          <td><span class="badge pass">Verified</span></td>
           <td>Audited, no issue</td>
-          <td style="color:var(--gold);">+9 DSF</td>
+          <td>+9 DSF</td>
         </tr>
       </tbody>
     </table>
+    <details class="evidence" style="margin-top:12px;">
+      <summary>job-4390 &mdash; dispute detail</summary>
+      <div class="evidence-body">
+        Redundant peer run disagreed beyond the perceptual-similarity
+        tolerance for Standard-tier jobs. A third independent node has been
+        assigned for arbitration per <code>docs/p2p-rendering.md</code> &sect;2.
+        Stake is not slashed while a dispute is open &mdash; only on a
+        verified-incorrect outcome. Peer diversity check: passed (different
+        ASN and staking lineage from your node).
+      </div>
+    </details>
   </div>
 
   <div class="grid-2" style="margin-top:20px;">
     <div class="panel">
-      <div style="font-size:13px; font-weight:700; margin-bottom:8px;">Job routing exposure</div>
-      <p style="font-size:12px; color:var(--text-muted); line-height:1.7; margin:0;">
-        Your node is currently eligible for <b>public-domain-style / low IP
-        risk</b> jobs only, per <code>docs/p2p-rendering.md</code> §4. Higher-
+      <div style="font-size:12px; font-weight:700; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.03em; color:var(--text-secondary);">Job routing exposure</div>
+      <p style="font-size:12px; color:var(--text-secondary); line-height:1.7; margin:0;">
+        Your node is currently eligible for <b style="color:var(--text);">public-domain-style / low IP
+        risk</b> jobs only, per <code>docs/p2p-rendering.md</code> &sect;4. Higher-
         sensitivity job eligibility requires a confidentiality agreement and
-        higher stake tier.
+        a higher stake tier.
       </p>
       <button class="btn small" style="margin-top:12px;">Request higher sensitivity tier</button>
     </div>
     <div class="panel">
-      <div style="font-size:13px; font-weight:700; margin-bottom:8px;">Stake &amp; slashing</div>
-      <p style="font-size:12px; color:var(--text-muted); line-height:1.7; margin:0;">
+      <div style="font-size:12px; font-weight:700; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.03em; color:var(--text-secondary);">Stake &amp; slashing</div>
+      <p style="font-size:12px; color:var(--text-secondary); line-height:1.7; margin:0;">
         Stake is slashed only for verified-incorrect output, not for late
-        or dropped jobs (those affect scheduling priority instead) — see
+        or dropped jobs (those affect scheduling priority instead) &mdash; see
         <code>docs/dataflows.md</code> flow 3.
       </p>
       <button class="btn small" style="margin-top:12px;">View slashing history (0 events)</button>
@@ -117,8 +132,8 @@
 
   <footer class="note">
     Mockup only. Payout amounts, reputation percentages, and job IDs are
-    illustrative placeholders — no token unit values are proposed anywhere
-    in this blueprint (<code>docs/tokenomics.md</code> §6).
+    illustrative placeholders &mdash; no token unit values are proposed
+    anywhere in this blueprint (<code>docs/tokenomics.md</code> &sect;6).
   </footer>
 </div>
 </body>

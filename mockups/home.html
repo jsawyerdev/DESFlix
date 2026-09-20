@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>DESFlix — Home</title>
+<title>DESFlix &mdash; Home</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -15,119 +15,147 @@
     <a href="creator-studio.html">Creator Studio</a>
     <a href="node-dashboard.html">Node Dashboard</a>
     <a href="wallet.html">Wallet</a>
+    <a href="storyboard.html">Storyboard</a>
   </div>
   <div class="navright">
-    <div class="token-pill">&#9679; 1,240 DSF</div>
+    <div class="token-pill">1,240 DSF</div>
     <div class="avatar">JS</div>
   </div>
 </nav>
 
 <div class="wrap">
 
-  <!-- Hero -->
-  <div class="panel art-a" style="margin-top:24px; padding:40px; border:none;">
-    <div class="badge gate" style="margin-bottom:10px;">Curator green-lit</div>
-    <h1 style="margin:0 0 8px; font-size:34px;">The Last Signal</h1>
-    <p style="color:#d9d3f0; max-width:520px; margin:0 0 18px;">
-      Mini-series · Sci-fi thriller · 6 episodes · Fully AI-generated (disclosed) ·
-      #2 on the Sci-fi leaderboard this week
-    </p>
-    <div style="display:flex; gap:10px;">
-      <button class="btn primary">&#9654; Play</button>
-      <button class="btn ghost">+ My List</button>
+  <!-- Hero: one title, evidence-first, no decorative gradient -->
+  <div class="panel" style="margin-top:24px; display:grid; grid-template-columns: 220px 1fr; gap:24px;">
+    <div class="placeholder-art" style="border-radius:var(--radius); aspect-ratio:2/3; display:flex; align-items:center; justify-content:center; color:var(--text-tertiary); font-size:11px;">KEY ART<br>PLACEHOLDER</div>
+    <div>
+      <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+        <span class="badge pass">Gate: Passed</span>
+        <span class="freshness">Rank updated 12m ago</span>
+      </div>
+      <h1 style="margin:0 0 6px; font-size:26px;">The Last Signal</h1>
+      <div class="card-meta" style="margin-bottom:12px;">Mini-series &middot; Sci-fi thriller &middot; 6 episodes &middot; #2 in Sci-fi this week</div>
+
+      <div class="lineage" style="margin-bottom:14px;">
+        <span class="step human">Script: human-written</span><span class="sep">&rarr;</span>
+        <span class="step ai">Voice: AI-generated</span><span class="sep">&rarr;</span>
+        <span class="step ai">Visuals: AI-generated (full pipeline)</span><span class="sep">&rarr;</span>
+        <span class="step human">Reviewed: curator, approved</span>
+      </div>
+
+      <div style="display:flex; gap:10px; margin-bottom:10px;">
+        <button class="btn primary">Play</button>
+        <button class="btn">+ My List</button>
+      </div>
+
+      <details class="evidence">
+        <summary>Why this rank &mdash; evidence for #2 in Sci-fi</summary>
+        <div class="evidence-body">
+          Engagement score 91.8 <span class="tag-observed">(observed, N=14,200 completed sessions, trailing 7 days)</span><br>
+          Reputation-weighted rating: 4.4 / 5 <span class="tag-observed">(observed, N=3,140 payout-eligible ratings)</span><br>
+          7-day trend: +2.4% <span class="tag-estimated">(estimated &mdash; short window, wide confidence interval)</span><br>
+          Ranking method: <code>docs/tokenomics.md</code> &sect;5 &mdash; engagement-weighted, not raw paid-rating volume.
+        </div>
+      </details>
     </div>
   </div>
 
   <div class="section-title">
-    <h2>Trending now — this week's leaderboard</h2>
+    <h2>Trending now &mdash; this week's leaderboard</h2>
     <a class="see-all" href="leaderboard.html">See full leaderboard &rarr;</a>
   </div>
+  <div class="freshness" style="margin-bottom:10px;">Leaderboard snapshot as of 12m ago &middot; decays over a 7-day window</div>
   <div class="row-scroll">
     <div class="card">
-      <div class="thumb art-b"></div>
+      <div class="thumb">ART</div>
       <div class="card-body">
         <div class="card-title">Harbor Static</div>
-        <div class="card-meta"><span class="badge gate">Gate: Passed</span></div>
+        <div class="card-meta"><span class="badge pass">Passed</span> #1 Sci-fi</div>
       </div>
     </div>
     <div class="card">
-      <div class="thumb art-c"></div>
+      <div class="thumb">ART</div>
       <div class="card-body">
         <div class="card-title">Midnight Ledger</div>
-        <div class="card-meta"><span class="badge gate">Gate: Passed</span> <span class="badge placement">Placement</span></div>
+        <div class="card-meta"><span class="badge pass">Passed</span> <span class="badge info">Placement live</span></div>
       </div>
     </div>
     <div class="card">
-      <div class="thumb art-d"></div>
+      <div class="thumb">ART</div>
       <div class="card-body">
         <div class="card-title">Two-Chair Comedy</div>
-        <div class="card-meta"><span class="badge gate">Gate: Passed</span></div>
+        <div class="card-meta"><span class="badge pass">Passed</span> #1 Comedy</div>
       </div>
     </div>
     <div class="card">
-      <div class="thumb art-e"></div>
+      <div class="thumb">ART</div>
       <div class="card-body">
         <div class="card-title">Foundry Season 2</div>
-        <div class="card-meta"><span class="badge gate">Gate: Passed</span></div>
+        <div class="card-meta"><span class="badge pass">Passed</span> #1 overall</div>
       </div>
     </div>
     <div class="card">
-      <div class="thumb art-f"></div>
+      <div class="thumb">ART</div>
       <div class="card-body">
         <div class="card-title">Rendered Hearts</div>
-        <div class="card-meta"><span class="badge gate">Gate: Passed</span></div>
+        <div class="card-meta"><span class="badge pass">Passed</span> #5 Drama</div>
       </div>
     </div>
   </div>
 
   <div class="section-title">
     <h2>New this week</h2>
-    <a class="see-all">See all &rarr;</a>
+    <span class="freshness">Catalog synced 4m ago</span>
   </div>
   <div class="row-scroll">
     <div class="card">
-      <div class="thumb art-c"></div>
+      <div class="thumb">ART</div>
       <div class="card-body">
         <div class="card-title">The Quiet Frame</div>
-        <div class="card-meta"><span class="badge">Film</span></div>
+        <div class="card-meta">Film &middot; <span class="badge pass">Passed</span></div>
       </div>
     </div>
     <div class="card">
-      <div class="thumb art-a"></div>
+      <div class="thumb">ART</div>
       <div class="card-body">
         <div class="card-title">Second Draft</div>
-        <div class="card-meta"><span class="badge">Comedy</span></div>
+        <div class="card-meta">Comedy &middot; <span class="badge pass">Passed</span></div>
       </div>
     </div>
     <div class="card">
-      <div class="thumb art-b"></div>
+      <div class="thumb">ART</div>
       <div class="card-body">
         <div class="card-title">Salt Line</div>
-        <div class="card-meta"><span class="badge">Mini-series</span></div>
+        <div class="card-meta">Mini-series &middot; <span class="badge pass">Passed</span></div>
       </div>
     </div>
     <div class="card">
-      <div class="thumb art-d"></div>
+      <div class="thumb">ART</div>
       <div class="card-body">
         <div class="card-title">Orbit Draft Zero</div>
-        <div class="card-meta"><span class="badge">Sci-fi</span></div>
+        <div class="card-meta">Sci-fi &middot; <span class="badge pass">Passed</span></div>
       </div>
     </div>
     <div class="card">
-      <div class="thumb art-e"></div>
+      <div class="thumb">ART</div>
       <div class="card-body">
         <div class="card-title">Paper Anchors</div>
-        <div class="card-meta"><span class="badge">Drama</span></div>
+        <div class="card-meta">Drama &middot; <span class="badge pass">Passed</span></div>
       </div>
     </div>
   </div>
 
   <footer class="note">
-    Mockup only. Every published title shown here carries an AI-origin
-    disclosure and a "Gate: Passed" state per <code>docs/content-quality-gates.md</code>
-    — there is deliberately no way for unreviewed content to appear on this
-    page. Runtime floor ("no shorts") is enforced before a title can reach
-    this catalog at all, per the same document's Stage 3.
+    Mockup only, static HTML/CSS, no data behind it. Design references:
+    background/surface tones and 8px-family radius follow Netflix's public
+    dark-theme conventions (near-black background, muted grey secondary
+    text, color reserved for one primary label per surface); the evidence/
+    freshness/lineage components follow standard dashboard-trust practice
+    (explicit "as of" timestamps, observed-vs-estimated labeling, source
+    lineage trails, progressive disclosure via the collapsed evidence
+    panels). See README.md "UI design references" for citations. No title
+    on this screen can appear without a passed Stage 5 curator review &mdash;
+    <code>docs/content-quality-gates.md</code>.
   </footer>
 </div>
 </body>

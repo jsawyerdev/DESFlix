@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>DESFlix — Watch</title>
+<title>DESFlix &mdash; Watch</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -10,14 +10,15 @@
 <nav class="topnav">
   <div class="brand">DESFlix</div>
   <div class="navlinks">
-    <a href="home.html">Home</a>
+    <a class="active" href="home.html">Home</a>
     <a href="leaderboard.html">Leaderboard</a>
     <a href="creator-studio.html">Creator Studio</a>
     <a href="node-dashboard.html">Node Dashboard</a>
     <a href="wallet.html">Wallet</a>
+    <a href="storyboard.html">Storyboard</a>
   </div>
   <div class="navright">
-    <div class="token-pill">&#9679; 1,240 DSF</div>
+    <div class="token-pill">1,240 DSF</div>
     <div class="avatar">JS</div>
   </div>
 </nav>
@@ -26,80 +27,88 @@
   <div class="grid-2" style="grid-template-columns: 2.2fr 1fr; align-items:start;">
 
     <div>
-      <div class="art-a" style="border-radius:var(--radius); aspect-ratio:16/9; display:flex; align-items:center; justify-content:center; position:relative;">
-        <div style="width:64px; height:64px; border-radius:50%; background:rgba(255,255,255,0.15); display:flex; align-items:center; justify-content:center; font-size:22px;">&#9654;</div>
-        <div style="position:absolute; left:16px; bottom:14px; font-size:12px; color:#d9d3f0;">Harbor Static · S1E4 · 41:12</div>
-        <div style="position:absolute; right:16px; top:14px;"><span class="badge">AI-generated (full pipeline)</span></div>
+      <div class="placeholder-art" style="border-radius:var(--radius); aspect-ratio:16/9; display:flex; align-items:center; justify-content:center; position:relative;">
+        <div style="width:56px; height:56px; border-radius:50%; border:1px solid var(--border-strong); display:flex; align-items:center; justify-content:center; font-size:18px; color:var(--text-secondary);">&#9654;</div>
+        <div style="position:absolute; left:16px; bottom:14px; font-size:12px; color:var(--text-secondary);">Harbor Static &middot; S1E4 &middot; 41:12</div>
+        <div style="position:absolute; right:16px; top:14px;"><span class="badge info">AI-generated, full pipeline</span></div>
       </div>
 
       <div style="margin-top:18px;">
-        <h1 style="margin:0 0 6px; font-size:24px;">Harbor Static</h1>
-        <div class="card-meta" style="font-size:13px; margin-bottom:16px;">
-          <span class="badge gate">Gate: Passed — Curator reviewed</span>
-          <span>Sci-fi · Mini-series · Ep 4 of 6</span>
+        <h1 style="margin:0 0 6px; font-size:22px;">Harbor Static</h1>
+        <div class="card-meta" style="margin-bottom:8px;">
+          <span class="badge pass">Gate: Passed</span>
+          Sci-fi &middot; Mini-series &middot; Ep 4 of 6
+        </div>
+        <div class="lineage" style="margin-bottom:16px;">
+          <span class="step human">Script: human-written</span><span class="sep">&rarr;</span>
+          <span class="step ai">Voice: AI-generated</span><span class="sep">&rarr;</span>
+          <span class="step ai">Visuals: AI-generated</span><span class="sep">&rarr;</span>
+          <span class="step human">Curator: J. Marsh, approved 3d ago</span>
         </div>
 
         <div class="panel">
-          <div style="font-size:13px; color:var(--text-muted); margin-bottom:10px;">Rate this episode</div>
-          <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
-            <button class="btn">&#9733; 1</button>
-            <button class="btn">&#9733; 2</button>
-            <button class="btn primary">&#9733; 3</button>
-            <button class="btn">&#9733; 4</button>
-            <button class="btn">&#9733; 5</button>
-            <button class="btn" style="border-color:var(--down); color:var(--down);">&#9660; Downvote</button>
+          <div style="font-size:12px; color:var(--text-secondary); margin-bottom:10px; text-transform:uppercase; letter-spacing:0.03em;">Rate this episode</div>
+          <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+            <button class="btn small">1</button>
+            <button class="btn small">2</button>
+            <button class="btn small primary">3</button>
+            <button class="btn small">4</button>
+            <button class="btn small">5</button>
+            <button class="btn small danger-outline">Downvote</button>
           </div>
-          <div style="margin-top:12px; font-size:12px; color:var(--up); display:flex; align-items:center; gap:6px;">
-            &#10003; Rating recorded — stipend credited (+2 DSF, daily cap 8/10 used)
-          </div>
-          <div style="margin-top:4px; font-size:11px; color:var(--text-dim);">
-            This rating also feeds the public leaderboard, weighted by your
-            account reputation — see <code>docs/tokenomics.md</code> D2. Your
-            payout and your leaderboard influence are tracked separately.
-          </div>
+
+          <details class="evidence" style="margin-top:14px;">
+            <summary>Rating recorded &mdash; payout and leaderboard effect</summary>
+            <div class="evidence-body">
+              Stipend credited: +2 DSF <span class="tag-observed">(flat, capped &mdash; 8/10 daily allowance used)</span><br>
+              Leaderboard weight applied: 0.6&times; <span class="tag-observed">(account reputation tier: standard)</span><br>
+              Payout eligibility check: watch-session telemetry confirmed (38:02 of 41:12 watched) &mdash; see <code>docs/dataflows.md</code> flow 2<br>
+              Payout and leaderboard influence are tracked as separate fields on this rating, not the same number &mdash; see <code>docs/tokenomics.md</code> D2.
+            </div>
+          </details>
         </div>
       </div>
     </div>
 
     <div>
       <div class="panel">
-        <div style="font-size:13px; font-weight:700; margin-bottom:10px;">Episodes</div>
-        <div style="display:flex; flex-direction:column; gap:10px;">
-          <div style="display:flex; gap:10px; align-items:center;">
-            <div class="art-b" style="width:70px; height:44px; border-radius:6px; flex:none;"></div>
-            <div style="font-size:12px;">S1E1 — Signal Loss<br><span style="color:var(--text-dim);">39:04</span></div>
+        <div style="font-size:12px; font-weight:700; margin-bottom:10px; text-transform:uppercase; letter-spacing:0.03em; color:var(--text-secondary);">Episodes</div>
+        <div style="display:flex; flex-direction:column; gap:2px;">
+          <div style="display:flex; gap:10px; align-items:center; padding:6px 4px;">
+            <div class="placeholder-art" style="width:64px; height:40px; border-radius:4px; flex:none;"></div>
+            <div style="font-size:12px;">S1E1 &mdash; Signal Loss<br><span style="color:var(--text-tertiary);">39:04</span></div>
           </div>
-          <div style="display:flex; gap:10px; align-items:center;">
-            <div class="art-c" style="width:70px; height:44px; border-radius:6px; flex:none;"></div>
-            <div style="font-size:12px;">S1E2 — Static Bloom<br><span style="color:var(--text-dim);">42:11</span></div>
+          <div style="display:flex; gap:10px; align-items:center; padding:6px 4px;">
+            <div class="placeholder-art" style="width:64px; height:40px; border-radius:4px; flex:none;"></div>
+            <div style="font-size:12px;">S1E2 &mdash; Static Bloom<br><span style="color:var(--text-tertiary);">42:11</span></div>
           </div>
-          <div style="display:flex; gap:10px; align-items:center;">
-            <div class="art-d" style="width:70px; height:44px; border-radius:6px; flex:none;"></div>
-            <div style="font-size:12px;">S1E3 — Harbor Light<br><span style="color:var(--text-dim);">40:47</span></div>
+          <div style="display:flex; gap:10px; align-items:center; padding:6px 4px;">
+            <div class="placeholder-art" style="width:64px; height:40px; border-radius:4px; flex:none;"></div>
+            <div style="font-size:12px;">S1E3 &mdash; Harbor Light<br><span style="color:var(--text-tertiary);">40:47</span></div>
           </div>
-          <div style="display:flex; gap:10px; align-items:center; background:var(--bg-raised); border-radius:6px; padding:4px;">
-            <div class="art-a" style="width:70px; height:44px; border-radius:6px; flex:none;"></div>
-            <div style="font-size:12px;">S1E4 — Now Playing<br><span style="color:var(--accent-2);">41:12</span></div>
+          <div style="display:flex; gap:10px; align-items:center; background:var(--bg-raised); border-radius:4px; padding:6px 4px;">
+            <div class="placeholder-art" style="width:64px; height:40px; border-radius:4px; flex:none;"></div>
+            <div style="font-size:12px;">S1E4 &mdash; Now playing<br><span style="color:var(--accent);">41:12</span></div>
           </div>
         </div>
       </div>
 
       <div class="panel" style="margin-top:16px;">
-        <div style="font-size:13px; font-weight:700; margin-bottom:8px;">Why you're seeing this rating flow</div>
-        <p style="font-size:12px; color:var(--text-muted); line-height:1.6; margin:0;">
-          Payout eligibility requires a verified account and a completed
-          watch session for this title (<code>docs/dataflows.md</code> flow 2).
-          Accounts flagged as low-trust can still rate — it just won't be
-          payout-eligible or carry full leaderboard weight.
+        <div style="font-size:12px; font-weight:700; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.03em; color:var(--text-secondary);">If this account is low-trust</div>
+        <p style="font-size:12px; color:var(--text-secondary); line-height:1.7; margin:0;">
+          Rating is still recorded and still visible to you, but is labeled
+          <span class="badge pending">Not payout-eligible</span> and carries
+          near-zero leaderboard weight until reputation is established &mdash;
+          <code>docs/dataflows.md</code> flow 2. This state is shown, not hidden.
         </p>
       </div>
     </div>
   </div>
 
   <footer class="note">
-    Mockup only — the "+2 DSF" stipend figure and the "8/10 daily cap" are
-    illustrative placeholders, not a proposed real value; unit economics are
-    explicitly unresolved in <code>docs/tokenomics.md</code> §6.
+    Mockup only. Stipend amount, daily cap, watch-session numbers, and
+    reputation weight are illustrative placeholders &mdash; no unit values are
+    proposed anywhere in this blueprint (<code>docs/tokenomics.md</code> &sect;6).
   </footer>
 </div>
 </body>

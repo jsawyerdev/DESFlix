@@ -2,55 +2,91 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>DESFlix — Mockups Index</title>
+<title>DESFlix &mdash; Mockups Index</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="wrap" style="padding-top:60px; padding-bottom:60px;">
-  <div class="brand" style="font-size:30px; margin-bottom:6px;">DESFlix</div>
-  <p style="color:var(--text-muted); max-width:640px; line-height:1.6;">
-    Static UI mockups only — no interactivity beyond basic tab toggles, no
-    backend, no real data. Part of the DESFlix blueprint repo. See
-    <code>../README.md</code> and <code>../ASSUMPTIONS_AND_RISK.md</code> for
-    what each screen assumes and what's still unresolved.
+<div class="wrap" style="padding-top:48px; padding-bottom:60px;">
+  <div class="brand" style="font-size:26px; margin-bottom:8px;">DESFlix &mdash; Mockups</div>
+  <p style="color:var(--text-secondary); max-width:640px; line-height:1.6; font-size:13px;">
+    Static UI mockups only &mdash; no backend, no real data, minimal JS (native
+    <code>&lt;details&gt;</code> for progressive disclosure). Part of the
+    DESFlix blueprint repo &mdash; see <code>../README.md</code> and
+    <code>../ASSUMPTIONS_AND_RISK.md</code> for what each screen assumes and
+    what's still unresolved.
   </p>
 
-  <div class="grid-3" style="margin-top:32px;">
+  <div class="grid-3" style="margin-top:28px;">
     <a class="panel" href="home.html">
       <div class="badge">Screen 1</div>
-      <h3 style="margin:10px 0 6px;">Home / Discovery</h3>
-      <p style="color:var(--text-muted); font-size:13px; margin:0;">Catalog browse, leaderboard rail, AI-origin + gate badges.</p>
+      <h3 style="margin:10px 0 6px; font-size:14px;">Home / Discovery</h3>
+      <p style="color:var(--text-secondary); font-size:12px; margin:0;">Catalog browse, leaderboard rail, evidence-linked gate/lineage badges.</p>
     </a>
     <a class="panel" href="watch.html">
       <div class="badge">Screen 2</div>
-      <h3 style="margin:10px 0 6px;">Watch + Rate</h3>
-      <p style="color:var(--text-muted); font-size:13px; margin:0;">Player, rating/downvote, payout-eligibility state.</p>
+      <h3 style="margin:10px 0 6px; font-size:14px;">Watch + Rate</h3>
+      <p style="color:var(--text-secondary); font-size:12px; margin:0;">Player, rating/downvote, payout-eligibility state shown explicitly.</p>
     </a>
     <a class="panel" href="leaderboard.html">
       <div class="badge">Screen 3</div>
-      <h3 style="margin:10px 0 6px;">Leaderboard</h3>
-      <p style="color:var(--text-muted); font-size:13px; margin:0;">Per-genre trending, engagement-weighted ranking.</p>
+      <h3 style="margin:10px 0 6px; font-size:14px;">Leaderboard</h3>
+      <p style="color:var(--text-secondary); font-size:12px; margin:0;">Per-genre trending, observed vs. estimated fields labeled.</p>
     </a>
     <a class="panel" href="creator-studio.html">
       <div class="badge">Screen 4</div>
-      <h3 style="margin:10px 0 6px;">Creator Studio</h3>
-      <p style="color:var(--text-muted); font-size:13px; margin:0;">Upload, render job status, quality-gate pipeline state.</p>
+      <h3 style="margin:10px 0 6px; font-size:14px;">Creator Studio</h3>
+      <p style="color:var(--text-secondary); font-size:12px; margin:0;">Upload, render job status, full five-stage gate pipeline state.</p>
     </a>
     <a class="panel" href="node-dashboard.html">
       <div class="badge">Screen 5</div>
-      <h3 style="margin:10px 0 6px;">Node Operator Dashboard</h3>
-      <p style="color:var(--text-muted); font-size:13px; margin:0;">P2P compute contribution, stake, verification history.</p>
+      <h3 style="margin:10px 0 6px; font-size:14px;">Node Operator Dashboard</h3>
+      <p style="color:var(--text-secondary); font-size:12px; margin:0;">P2P compute contribution, stake, verification/dispute history.</p>
     </a>
     <a class="panel" href="wallet.html">
       <div class="badge">Screen 6</div>
-      <h3 style="margin:10px 0 6px;">Wallet</h3>
-      <p style="color:var(--text-muted); font-size:13px; margin:0;">Balance, stipend history, cash-out, earnings breakdown.</p>
+      <h3 style="margin:10px 0 6px; font-size:14px;">Wallet</h3>
+      <p style="color:var(--text-secondary); font-size:12px; margin:0;">Balance, stipend history, cash-out, earnings breakdown.</p>
+    </a>
+    <a class="panel" href="storyboard.html">
+      <div class="badge info">Screen 7</div>
+      <h3 style="margin:10px 0 6px; font-size:14px;">End-to-End Storyboard</h3>
+      <p style="color:var(--text-secondary); font-size:12px; margin:0;">One title's journey across all six screens, frame by frame &mdash; and where it still has a gap.</p>
     </a>
   </div>
 
+  <div class="section-title"><h2>UI design references</h2></div>
+  <div class="panel">
+    <p style="font-size:12px; color:var(--text-secondary); line-height:1.75; margin:0 0 10px;">
+      This design system was revised from an earlier, decorative-gradient
+      version after review flagged it as vibe-coded &mdash; color with no
+      semantic meaning, and no way to tell an observed number from an
+      estimate. The revision is grounded in two researched references
+      rather than invented from scratch:
+    </p>
+    <ul style="font-size:12px; color:var(--text-secondary); line-height:1.9; margin:0 0 10px; padding-left:18px;">
+      <li>Netflix's public dark-theme conventions &mdash; near-black background family (#141414/#1F1F1F), white reserved for the one primary label per surface, muted grey secondary text (#B3B3B3), ~8px corner radius, edge-clipped horizontal carousels. Source: <a href="https://oh-my-design.kr/design-systems/netflix" style="color:var(--accent); text-decoration:underline;">Netflix Design System &mdash; Colors, Typography &amp; Tokens</a>, <a href="https://www.colorpalettegenerator.ai/brands/netflix" style="color:var(--accent); text-decoration:underline;">Netflix Color Palette reference</a>.</li>
+      <li>Evidence-grade dashboard practice &mdash; progressive disclosure to manage cognitive load, explicit "last updated" freshness timestamps, and documented source lineage to establish trust. Source: <a href="https://www.uxpin.com/studio/blog/dashboard-design-principles/" style="color:var(--accent); text-decoration:underline;">UXPin, Dashboard Design Principles</a>, <a href="https://www.pencilandpaper.io/articles/ux-pattern-analysis-data-dashboards" style="color:var(--accent); text-decoration:underline;">Pencil &amp; Paper, Dashboard UX Pattern Analysis</a>.</li>
+    </ul>
+    <p style="font-size:11px; color:var(--text-tertiary); line-height:1.7; margin:0;">
+      DESFlix does not use Netflix's actual brand red or the Netflix Sans
+      typeface (proprietary) &mdash; only the structural/tonal conventions above,
+      applied to this product's own accent color and a system font stack.
+      Component-level rules this system enforces: color used only for
+      semantic state (pass/fail/pending/info, never decoration); every
+      score or badge either plainly observed or explicitly marked
+      estimated; every data-bearing screen carries a freshness timestamp;
+      AI-origin disclosure shown as a lineage trail, not a single opaque
+      badge; cards used only for actual decision units (what to watch),
+      tables used for anything comparative (rankings, pipeline stages, job
+      history).
+    </p>
+  </div>
+
   <footer class="note" style="margin-left:0; margin-right:0; padding-left:0; padding-right:0; max-width:none;">
-    Visual design is placeholder (CSS gradients stand in for real key art/
-    thumbnails). Color system, spacing, and component patterns are the
+    Visual design is placeholder (flat muted tone + hatch stands in for
+    real key art/thumbnails &mdash; deliberately not a gradient, so it reads as
+    "no art yet" rather than a fake decorative finish). The color system,
+    spacing scale, and evidence/freshness/lineage components are the
     reusable part of this mockup set, not the specific copy or numbers shown.
   </footer>
 </div>

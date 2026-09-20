@@ -1,15 +1,15 @@
-# DESFlix — P2P Rendering Network
+# DESFlix -- P2P Rendering Network
 
 This is the least-proven subsystem in the blueprint (`ASSUMPTIONS_AND_RISK.md`
-§2.3, §6: low-medium confidence). This document designs it as an **opt-in
+sec. 2.3, sec. 6: low-medium confidence). This document designs it as an **opt-in
 supplement to centralized cloud rendering**, not a replacement, and is
 explicit about the verification cost that determines whether it's actually
 cheaper than cloud GPU at all.
 
 ## 1. Why this is harder than existing P2P compute precedent
 
-Real precedent (`ASSUMPTIONS_AND_RISK.md` §2.1) — BOINC/Folding@home-style
-scientific batch computing, and decentralized video transcoding networks —
+Real precedent (`ASSUMPTIONS_AND_RISK.md` sec. 2.1) -- BOINC/Folding@home-style
+scientific batch computing, and decentralized video transcoding networks --
 works because the *output is cheap to verify*: a scientific result can often
 be deterministically recomputed or checked against known bounds, and
 transcoded video can be checked against the known source via checksum or
@@ -56,12 +56,12 @@ cloud rendering:
 | Standard | Scenes headed for Quality Gate submission | Dual independent-node run, perceptual-similarity comparison (not exact match) within tolerance | ~2x |
 | High | Final-publish renders, placement-eligible content, high-value catalog titles | Triple run with majority agreement + geographically/operator-diverse node selection to resist collusion | ~3x+ |
 
-The falsification test named in `ASSUMPTIONS_AND_RISK.md` §4 applies
+The falsification test named in `ASSUMPTIONS_AND_RISK.md` sec. 4 applies
 directly here: if Standard-tier cost (roughly 2x a single render, plus
 comparison compute) is not below centralized cloud cost for equivalent
 output, the P2P path has no economic argument for that tier regardless of
 how well the collusion/trust model works, and Phase 3 (`architecture.md`
-§5) should not proceed past pilot.
+sec. 5) should not proceed past pilot.
 
 ## 4. Job routing / scheduler logic
 
@@ -92,7 +92,7 @@ of maturity/practicality, none of them free:
   environments (TEEs) or encrypted-inference approaches that limit what a
   node operator's hardware can actually observe. This exists as a research
   area; it is **not** assumed as a given capability here, and is called out
-  as speculative per `ASSUMPTIONS_AND_RISK.md` §2.3 if relied upon.
+  as speculative per `ASSUMPTIONS_AND_RISK.md` sec. 2.3 if relied upon.
 
 ## 5. Node operator economics (conceptual, not priced)
 
@@ -102,14 +102,14 @@ Node operators are paid per verified job, scaled by:
   operator's higher reputation bar to be eligible for them).
 - Uptime/reliability reputation multiplier.
 
-No specific token amounts or exchange rates are proposed here — that's a
+No specific token amounts or exchange rates are proposed here -- that's a
 market-design and legal question (`tokenomics.md`, `ASSUMPTIONS_AND_RISK.md`
-§5), not an architecture question.
+sec. 5), not an architecture question.
 
 ## 6. Collusion and Sybil resistance for node operators
 
 Same structural risk as the rating-Sybil problem (`ASSUMPTIONS_AND_RISK.md`
-§3), applied to compute instead of ratings: an operator running many nodes
+sec. 3), applied to compute instead of ratings: an operator running many nodes
 could assign itself as its own "independent" verification peer.
 Mitigations:
 - Peer assignment for redundant runs is unpredictable to operators at job-
@@ -121,16 +121,16 @@ Mitigations:
   looking identities to collude reliably.
 - Stake-weighted slashing makes running many low-stake Sybil nodes
   economically unattractive relative to running fewer, well-reputed,
-  highly-utilized nodes — this only holds if the stake requirement is
+  highly-utilized nodes -- this only holds if the stake requirement is
   calibrated above the expected value of successful collusion, which is a
   tuning problem, not a solved one.
 
 ## 7. Fallback posture
 
-Cloud burst capacity is not a last resort bolted on after P2P — per
-`architecture.md` §4/§5, it's a first-class, always-available path. The
+Cloud burst capacity is not a last resort bolted on after P2P -- per
+`architecture.md` sec. 4/sec. 5, it's a first-class, always-available path. The
 platform's core value proposition (curated, no-slop, no-shorts AI content)
 does not depend on the P2P network succeeding; the P2P network is additive
 capacity/cost optimization and a differentiator *if* it proves out in
 pilot, consistent with the phased rollout and the steelman counterargument
-in `ASSUMPTIONS_AND_RISK.md` §3.
+in `ASSUMPTIONS_AND_RISK.md` sec. 3.

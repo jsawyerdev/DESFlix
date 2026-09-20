@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>DESFlix — Creator Studio</title>
+<title>DESFlix &mdash; Creator Studio</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -15,18 +15,20 @@
     <a class="active" href="creator-studio.html">Creator Studio</a>
     <a href="node-dashboard.html">Node Dashboard</a>
     <a href="wallet.html">Wallet</a>
+    <a href="storyboard.html">Storyboard</a>
   </div>
   <div class="navright">
-    <div class="token-pill">&#9679; 1,240 DSF</div>
+    <div class="token-pill">1,240 DSF</div>
     <div class="avatar">JS</div>
   </div>
 </nav>
 
 <div class="wrap" style="padding-top:24px;">
-  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; flex-wrap:wrap; gap:10px;">
-    <h1 style="margin:0; font-size:24px;">Creator Studio</h1>
-    <button class="btn primary">+ New Project</button>
+  <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:6px; flex-wrap:wrap; gap:10px;">
+    <h1 style="margin:0; font-size:22px;">Creator Studio</h1>
+    <button class="btn primary small">+ New Project</button>
   </div>
+  <div class="freshness" style="margin-bottom:18px;">Pipeline state as of 2m ago</div>
 
   <div class="grid-4" style="margin-bottom:24px;">
     <div class="stat-tile">
@@ -38,93 +40,106 @@
       <div class="value">7</div>
     </div>
     <div class="stat-tile">
-      <div class="label">Creator revenue share (30d)</div>
-      <div class="value" style="color:var(--gold);">4,820 DSF</div>
+      <div class="label">Revenue share (30d)</div>
+      <div class="value">4,820 DSF</div>
+      <div class="tag-observed">observed, settled</div>
     </div>
     <div class="stat-tile">
       <div class="label">Avg. curator score</div>
       <div class="value">8.4</div>
+      <div class="tag-observed">obs., N=7 reviews</div>
     </div>
   </div>
 
-  <div class="section-title"><h2>Harbor Static — Season 1</h2></div>
+  <div class="section-title"><h2>Harbor Static &mdash; Season 1</h2></div>
   <div class="panel">
-    <div style="font-size:12px; color:var(--text-muted); margin-bottom:14px;">
-      Pipeline per <code>docs/content-quality-gates.md</code> — five stages, each
-      episode tracked independently.
+    <div style="font-size:12px; color:var(--text-secondary); margin-bottom:14px;">
+      Pipeline per <code>docs/content-quality-gates.md</code> &mdash; five stages,
+      tracked independently per episode. No stage can be skipped; Stage 5
+      is mandatory for every title, not a spot-check.
     </div>
     <table class="list">
       <thead>
         <tr>
           <th>Episode</th>
-          <th>Stage 1<br>Compliance</th>
-          <th>Stage 2<br>Technical QC</th>
-          <th>Stage 3<br>Format rules</th>
-          <th>Stage 4<br>Community jury</th>
-          <th>Stage 5<br>Curator review</th>
+          <th>1 Compliance</th>
+          <th>2 Technical QC</th>
+          <th>3 Format rules</th>
+          <th>4 Community jury</th>
+          <th>5 Curator review</th>
           <th>Status</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td>S1E1</td>
-          <td><span class="badge gate">Pass</span></td>
-          <td><span class="badge gate">Pass</span></td>
-          <td><span class="badge gate">Pass</span></td>
-          <td><span class="badge gate">Pass</span></td>
-          <td><span class="badge gate">Pass</span></td>
-          <td style="color:var(--up); font-weight:600;">Published</td>
+          <td><span class="badge pass">Pass</span></td>
+          <td><span class="badge pass">Pass</span></td>
+          <td><span class="badge pass">Pass</span></td>
+          <td><span class="badge pass">Pass</span></td>
+          <td><span class="badge pass">Pass</span></td>
+          <td style="color:var(--success); font-weight:600;">Published</td>
         </tr>
         <tr>
           <td>S1E2</td>
-          <td><span class="badge gate">Pass</span></td>
-          <td><span class="badge gate">Pass</span></td>
-          <td><span class="badge gate">Pass</span></td>
-          <td><span class="badge gate">Pass</span></td>
-          <td><span class="badge gate">Pass</span></td>
-          <td style="color:var(--up); font-weight:600;">Published</td>
+          <td><span class="badge pass">Pass</span></td>
+          <td><span class="badge pass">Pass</span></td>
+          <td><span class="badge pass">Pass</span></td>
+          <td><span class="badge pass">Pass</span></td>
+          <td><span class="badge pass">Pass</span></td>
+          <td style="color:var(--success); font-weight:600;">Published</td>
         </tr>
         <tr>
           <td>S1E3</td>
-          <td><span class="badge gate">Pass</span></td>
-          <td><span class="badge gate">Pass</span></td>
-          <td><span class="badge gate">Pass</span></td>
-          <td><span class="badge gate">Pass</span></td>
-          <td><span class="badge gate">Pass</span></td>
-          <td style="color:var(--up); font-weight:600;">Published</td>
+          <td><span class="badge pass">Pass</span></td>
+          <td><span class="badge pass">Pass</span></td>
+          <td><span class="badge pass">Pass</span></td>
+          <td><span class="badge pass">Pass</span></td>
+          <td><span class="badge pass">Pass</span></td>
+          <td style="color:var(--success); font-weight:600;">Published</td>
         </tr>
         <tr>
           <td>S1E4</td>
-          <td><span class="badge gate">Pass</span></td>
-          <td><span class="badge gate">Pass</span></td>
-          <td><span class="badge gate">Pass</span></td>
-          <td><span class="badge gate">Pass</span></td>
-          <td><span class="badge gate">Pass</span></td>
-          <td style="color:var(--up); font-weight:600;">Published</td>
+          <td><span class="badge pass">Pass</span></td>
+          <td><span class="badge pass">Pass</span></td>
+          <td><span class="badge pass">Pass</span></td>
+          <td><span class="badge pass">Pass</span></td>
+          <td><span class="badge pass">Pass</span></td>
+          <td style="color:var(--success); font-weight:600;">Published</td>
         </tr>
         <tr>
           <td>S1E5</td>
-          <td><span class="badge gate">Pass</span></td>
-          <td><span class="badge gate">Pass</span></td>
-          <td><span class="badge gate">Pass</span></td>
-          <td style="color:var(--text-dim);">In review (312/500 votes)</td>
-          <td style="color:var(--text-dim);">Pending</td>
-          <td style="color:var(--accent-2); font-weight:600;">In review</td>
+          <td><span class="badge pass">Pass</span></td>
+          <td><span class="badge pass">Pass</span></td>
+          <td><span class="badge pass">Pass</span></td>
+          <td><span class="badge pending">312/500 votes</span></td>
+          <td style="color:var(--text-tertiary);">Pending</td>
+          <td style="color:var(--accent); font-weight:600;">In review</td>
         </tr>
         <tr>
           <td>S1E6</td>
-          <td><span class="badge gate">Pass</span></td>
-          <td style="color:var(--down); font-weight:600;">Failed — asset identity drift, shot 14-22</td>
-          <td style="color:var(--text-dim);">—</td>
-          <td style="color:var(--text-dim);">—</td>
-          <td style="color:var(--text-dim);">—</td>
-          <td style="color:var(--down); font-weight:600;">Revision needed</td>
+          <td><span class="badge pass">Pass</span></td>
+          <td><span class="badge fail">Failed</span></td>
+          <td style="color:var(--text-tertiary);">&mdash;</td>
+          <td style="color:var(--text-tertiary);">&mdash;</td>
+          <td style="color:var(--text-tertiary);">&mdash;</td>
+          <td style="color:var(--danger); font-weight:600;">Revision needed</td>
         </tr>
       </tbody>
     </table>
+    <details class="evidence" style="margin-top:12px;">
+      <summary>S1E6 &mdash; Stage 2 failure detail</summary>
+      <div class="evidence-body">
+        Finding: character asset identity drift, shot 14&ndash;22 (protagonist's
+        appearance shifts between shots &mdash; a known generative-pipeline
+        failure mode, <code>docs/content-quality-gates.md</code> Stage 2).<br>
+        Detected by: automated technical QC, run 2026-09-18 14:02.<br>
+        Required action: re-render affected shots and resubmit at Stage 1.
+      </div>
+    </details>
   </div>
 
-  <div class="section-title"><h2>Render jobs — S1E6 revision</h2></div>
+  <div class="section-title"><h2>Render jobs &mdash; S1E6 revision</h2></div>
   <div class="panel">
     <table class="list">
       <thead>
@@ -138,36 +153,37 @@
       </thead>
       <tbody>
         <tr>
-          <td>job-4471</td>
-          <td>Shot 14 — dock exterior</td>
+          <td><code>job-4471</code></td>
+          <td>Shot 14 &mdash; dock exterior</td>
           <td>P2P pool</td>
-          <td>Standard (2x)</td>
-          <td style="color:var(--up);">Verified</td>
+          <td>Standard (2&times;)</td>
+          <td style="color:var(--success);">Verified</td>
         </tr>
         <tr>
-          <td>job-4472</td>
-          <td>Shot 22 — character close, plot-critical</td>
+          <td><code>job-4472</code></td>
+          <td>Shot 22 &mdash; character close, plot-critical</td>
           <td>Cloud burst</td>
-          <td>High (3x)</td>
-          <td style="color:var(--accent-2);">Rendering</td>
+          <td>High (3&times;)</td>
+          <td style="color:var(--accent);">Rendering</td>
         </tr>
         <tr>
-          <td>job-4473</td>
-          <td>Shot 22b — re-render, identity fix</td>
+          <td><code>job-4473</code></td>
+          <td>Shot 22b &mdash; re-render, identity fix</td>
           <td>Cloud burst</td>
-          <td>High (3x)</td>
-          <td style="color:var(--text-dim);">Queued</td>
+          <td>High (3&times;)</td>
+          <td style="color:var(--text-tertiary);">Queued</td>
         </tr>
       </tbody>
     </table>
-    <div style="font-size:12px; color:var(--text-dim); margin-top:12px;">
-      Routing follows <code>docs/p2p-rendering.md</code> §4: plot-critical,
+    <div style="font-size:11px; color:var(--text-tertiary); margin-top:12px;">
+      Routing follows <code>docs/p2p-rendering.md</code> &sect;4: plot-critical,
       pre-release shots default to cloud burst regardless of P2P capacity.
     </div>
   </div>
 
   <footer class="note">
-    Mockup only. Vote counts, job IDs, and status text are illustrative.
+    Mockup only. Vote counts, job IDs, timestamps, and status text are
+    illustrative.
   </footer>
 </div>
 </body>

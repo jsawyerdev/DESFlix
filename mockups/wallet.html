@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>DESFlix — Wallet</title>
+<title>DESFlix &mdash; Wallet</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -15,23 +15,25 @@
     <a href="creator-studio.html">Creator Studio</a>
     <a href="node-dashboard.html">Node Dashboard</a>
     <a class="active" href="wallet.html">Wallet</a>
+    <a href="storyboard.html">Storyboard</a>
   </div>
   <div class="navright">
-    <div class="token-pill">&#9679; 1,240 DSF</div>
+    <div class="token-pill">1,240 DSF</div>
     <div class="avatar">JS</div>
   </div>
 </nav>
 
 <div class="wrap" style="padding-top:24px;">
-  <h1 style="margin:0 0 18px; font-size:24px;">Wallet</h1>
+  <h1 style="margin:0 0 4px; font-size:22px;">Wallet</h1>
+  <div class="freshness" style="margin-bottom:18px;">Balance as of last settled transaction, 6m ago</div>
 
-  <div class="panel art-d" style="border:none; padding:26px; margin-bottom:22px;">
-    <div style="font-size:12px; color:#cbd5f5; margin-bottom:6px;">Total balance</div>
-    <div style="font-size:36px; font-weight:800;">1,240 DSF</div>
-    <div style="font-size:12px; color:#cbd5f5; margin-top:6px;">Ledger type: Permissioned (pilot) — see docs/tokenomics.md D1</div>
+  <div class="panel" style="padding:22px; margin-bottom:22px;">
+    <div style="font-size:11px; color:var(--text-secondary); text-transform:uppercase; letter-spacing:0.03em; margin-bottom:6px;">Total balance</div>
+    <div style="font-size:32px; font-weight:800;">1,240 DSF</div>
+    <div class="tag-observed" style="margin-top:6px;">Ledger type: permissioned (pilot) &mdash; <code>docs/tokenomics.md</code> D1</div>
     <div style="display:flex; gap:10px; margin-top:16px;">
       <button class="btn primary">Cash out</button>
-      <button class="btn ghost">Transaction history</button>
+      <button class="btn">Transaction history</button>
     </div>
   </div>
 
@@ -39,7 +41,7 @@
     <div class="stat-tile">
       <div class="label">Rating stipends (30d)</div>
       <div class="value">148 DSF</div>
-      <div style="font-size:11px; color:var(--text-dim); margin-top:6px;">Capped, identity-gated — docs/tokenomics.md D2</div>
+      <div style="font-size:11px; color:var(--text-tertiary); margin-top:6px;">Capped, identity-gated &mdash; <code>docs/tokenomics.md</code> D2</div>
     </div>
     <div class="stat-tile">
       <div class="label">Node compute payouts (30d)</div>
@@ -66,42 +68,42 @@
         <tr>
           <td>Today</td>
           <td><span class="badge">Rating stipend</span></td>
-          <td>Harbor Static S1E4 — rating recorded, payout-eligible</td>
-          <td style="color:var(--gold);">+2 DSF</td>
+          <td>Harbor Static S1E4 &mdash; rating recorded, payout-eligible</td>
+          <td>+2 DSF</td>
         </tr>
         <tr>
           <td>Today</td>
           <td><span class="badge">Compute payout</span></td>
-          <td>job-4471 verified — Standard tier</td>
-          <td style="color:var(--gold);">+18 DSF</td>
+          <td><code>job-4471</code> verified &mdash; Standard tier</td>
+          <td>+18 DSF</td>
         </tr>
         <tr>
           <td>Yesterday</td>
-          <td><span class="badge">Rating stipend</span></td>
-          <td>Two-Chair Comedy S1E9 — daily cap reached, further ratings not payout-eligible</td>
-          <td style="color:var(--text-dim);">+0 DSF</td>
+          <td><span class="badge pending">Rating stipend</span></td>
+          <td>Two-Chair Comedy S1E9 &mdash; daily cap reached, further ratings not payout-eligible</td>
+          <td style="color:var(--text-tertiary);">+0 DSF</td>
         </tr>
         <tr>
           <td>Yesterday</td>
-          <td><span class="badge placement">Placement revenue share</span></td>
-          <td>Midnight Ledger — creator share of placement deal</td>
-          <td style="color:var(--gold);">+310 DSF</td>
+          <td><span class="badge info">Placement revenue share</span></td>
+          <td>Midnight Ledger &mdash; creator share of placement deal</td>
+          <td>+310 DSF</td>
         </tr>
         <tr>
           <td>3 days ago</td>
           <td><span class="badge">Cash-out</span></td>
           <td>Withdrawal to payout partner, KYC-verified</td>
-          <td style="color:var(--down);">-500 DSF</td>
+          <td style="color:var(--danger);">&minus;500 DSF</td>
         </tr>
       </tbody>
     </table>
   </div>
 
   <footer class="note">
-    Mockup only. No token/unit values, cash-out mechanics, or exchange rates
-    proposed here are real figures — <code>docs/tokenomics.md</code> §6 leaves
-    all of this to finance/counsel. Cash-out and KYC/AML questions are open
-    per <code>ASSUMPTIONS_AND_RISK.md</code> §5.
+    Mockup only. No token/unit values, cash-out mechanics, or exchange
+    rates proposed here are real figures &mdash; <code>docs/tokenomics.md</code>
+    &sect;6 leaves this to finance/counsel. Cash-out and KYC/AML questions are
+    open per <code>ASSUMPTIONS_AND_RISK.md</code> &sect;5.
   </footer>
 </div>
 </body>

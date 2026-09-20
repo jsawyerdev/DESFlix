@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>DESFlix — Leaderboard</title>
+<title>DESFlix &mdash; Leaderboard</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -15,21 +15,25 @@
     <a href="creator-studio.html">Creator Studio</a>
     <a href="node-dashboard.html">Node Dashboard</a>
     <a href="wallet.html">Wallet</a>
+    <a href="storyboard.html">Storyboard</a>
   </div>
   <div class="navright">
-    <div class="token-pill">&#9679; 1,240 DSF</div>
+    <div class="token-pill">1,240 DSF</div>
     <div class="avatar">JS</div>
   </div>
 </nav>
 
 <div class="wrap" style="padding-top:24px;">
-  <h1 style="margin:0 0 4px; font-size:24px;">Leaderboard</h1>
-  <p style="color:var(--text-muted); font-size:13px; margin:0 0 20px;">
+  <div style="display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:8px;">
+    <h1 style="margin:0; font-size:22px;">Leaderboard</h1>
+    <span class="freshness">Snapshot as of 12m ago &middot; recomputed every 5m &middot; 7-day decay window</span>
+  </div>
+  <p style="color:var(--text-secondary); font-size:12px; margin:6px 0 20px;">
     Ranked by engagement-weighted signal (completion, rewatch, reputation-weighted
-    ratings) — not raw paid-rating volume. See <code>docs/tokenomics.md</code> §5.
+    ratings) &mdash; not raw paid-rating volume. <code>docs/tokenomics.md</code> &sect;5.
   </p>
 
-  <div style="display:flex; gap:8px; margin-bottom:18px; flex-wrap:wrap;">
+  <div style="display:flex; gap:8px; margin-bottom:16px; flex-wrap:wrap;">
     <button class="btn primary small">All</button>
     <button class="btn small">Sci-fi</button>
     <button class="btn small">Comedy</button>
@@ -42,85 +46,107 @@
     <table class="list">
       <thead>
         <tr>
-          <th style="width:36px;">#</th>
+          <th style="width:32px;">#</th>
           <th>Title</th>
           <th>Genre</th>
           <th>Engagement score</th>
+          <th>Sample size</th>
           <th>7-day trend</th>
-          <th>Placement status</th>
+          <th>Placement</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td style="font-weight:800; color:var(--gold);">1</td>
+          <td style="font-weight:800;">1</td>
           <td style="font-weight:600;">Foundry Season 2</td>
           <td><span class="badge">Sci-fi</span></td>
-          <td>94.2</td>
-          <td class="delta up">&#9650; 6.1%</td>
-          <td><span class="badge placement">Open for bids</span></td>
+          <td>94.2 <span class="tag-observed">obs.</span></td>
+          <td style="color:var(--text-tertiary);">N=18,900</td>
+          <td class="delta up">&#9650; 6.1% <span class="tag-estimated">est.</span></td>
+          <td><span class="badge info">Open for bids</span></td>
         </tr>
         <tr>
-          <td style="font-weight:800; color:var(--gold);">2</td>
+          <td style="font-weight:800;">2</td>
           <td style="font-weight:600;">Harbor Static</td>
           <td><span class="badge">Sci-fi</span></td>
-          <td>91.8</td>
-          <td class="delta up">&#9650; 2.4%</td>
+          <td>91.8 <span class="tag-observed">obs.</span></td>
+          <td style="color:var(--text-tertiary);">N=14,200</td>
+          <td class="delta up">&#9650; 2.4% <span class="tag-estimated">est.</span></td>
           <td><span class="badge">Creator opt-out</span></td>
         </tr>
         <tr>
-          <td style="font-weight:800; color:var(--gold);">3</td>
+          <td style="font-weight:800;">3</td>
           <td style="font-weight:600;">Midnight Ledger</td>
           <td><span class="badge">Drama</span></td>
-          <td>89.0</td>
-          <td class="delta down">&#9660; 1.1%</td>
-          <td><span class="badge placement">Placement live</span></td>
+          <td>89.0 <span class="tag-observed">obs.</span></td>
+          <td style="color:var(--text-tertiary);">N=11,050</td>
+          <td class="delta down">&#9660; 1.1% <span class="tag-estimated">est.</span></td>
+          <td><span class="badge info">Placement live</span></td>
         </tr>
         <tr>
           <td>4</td>
           <td>Two-Chair Comedy</td>
           <td><span class="badge">Comedy</span></td>
-          <td>85.4</td>
-          <td class="delta up">&#9650; 9.7%</td>
-          <td><span class="badge">Below threshold</span></td>
+          <td>85.4 <span class="tag-observed">obs.</span></td>
+          <td style="color:var(--text-tertiary);">N=9,410</td>
+          <td class="delta up">&#9650; 9.7% <span class="tag-estimated">est., wide interval</span></td>
+          <td><span class="badge pending">Below threshold</span></td>
         </tr>
         <tr>
           <td>5</td>
           <td>Rendered Hearts</td>
           <td><span class="badge">Drama</span></td>
-          <td>81.9</td>
-          <td class="delta up">&#9650; 0.6%</td>
-          <td><span class="badge">Below threshold</span></td>
+          <td>81.9 <span class="tag-observed">obs.</span></td>
+          <td style="color:var(--text-tertiary);">N=6,730</td>
+          <td class="delta up">&#9650; 0.6% <span class="tag-estimated">est.</span></td>
+          <td><span class="badge pending">Below threshold</span></td>
         </tr>
         <tr>
           <td>6</td>
           <td>Salt Line</td>
           <td><span class="badge">Mini-series</span></td>
-          <td>77.3</td>
-          <td class="delta down">&#9660; 3.2%</td>
-          <td><span class="badge">Below threshold</span></td>
+          <td>77.3 <span class="tag-observed">obs.</span></td>
+          <td style="color:var(--text-tertiary);">N=2,980</td>
+          <td class="delta down">&#9660; 3.2% <span class="tag-estimated">est., low sample</span></td>
+          <td><span class="badge pending">Below threshold</span></td>
         </tr>
       </tbody>
     </table>
   </div>
 
-  <div class="grid-3" style="margin-top:20px;">
+  <details class="evidence" style="margin-top:16px;">
+    <summary>How the engagement score is computed</summary>
+    <div class="evidence-body">
+      Weighted combination of completion rate, rewatch rate, and
+      reputation-weighted rating &mdash; recomputed on a rolling 7-day decay
+      window so the table reflects recent demand, not lifetime totals. Raw
+      paid-rating count is deliberately not a direct input and is not shown,
+      per <code>docs/tokenomics.md</code> &sect;5 (avoids advertising the exact
+      number an attacker would want to farm). Trend percentages are
+      estimates over a short window and carry wider uncertainty at low
+      sample sizes &mdash; shown explicitly above rather than presented with
+      false precision.
+    </div>
+  </details>
+
+  <div class="grid-3" style="margin-top:16px;">
     <div class="stat-tile">
       <div class="label">What moves this ranking</div>
-      <div style="font-size:12px; color:var(--text-muted); line-height:1.6;">Completion rate, rewatch rate, reputation-weighted ratings. Raw paid-rating count is intentionally not shown or used directly.</div>
+      <div style="font-size:12px; color:var(--text-secondary); line-height:1.6;">Completion, rewatch, reputation-weighted rating. Not raw paid-rating count.</div>
     </div>
     <div class="stat-tile">
       <div class="label">Decay window</div>
-      <div style="font-size:12px; color:var(--text-muted); line-height:1.6;">Recent signal weighted higher than lifetime cumulative — reflects "what people want more of now," not an all-time list.</div>
+      <div style="font-size:12px; color:var(--text-secondary); line-height:1.6;">7 days &mdash; reflects "what people want more of now," not an all-time list.</div>
     </div>
     <div class="stat-tile">
       <div class="label">Placement eligibility</div>
-      <div style="font-size:12px; color:var(--text-muted); line-height:1.6;">Same ranking signal gates advertiser placement bids — one metric, not two separately-gameable ones.</div>
+      <div style="font-size:12px; color:var(--text-secondary); line-height:1.6;">Same ranking signal gates advertiser bids &mdash; one metric, not two separately-gameable ones.</div>
     </div>
   </div>
 
   <footer class="note">
-    Mockup only. Numeric scores and trend percentages are illustrative
-    placeholders, not a proposed scoring formula.
+    Mockup only. Scores, sample sizes, and trend percentages are
+    illustrative placeholders, not a proposed scoring formula.
   </footer>
 </div>
 </body>

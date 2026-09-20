@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>DESFlix &mdash; Storyboard</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .frame-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-4); }
+  @media (max-width: 980px) { .frame-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .frame-grid { grid-template-columns: 1fr; } }
+  .frame { background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; display: flex; flex-direction: column; }
+  .frame .num { position: absolute; margin: 10px; font-size: 11px; font-weight: 800; color: var(--text-tertiary); }
+  .frame .art { position: relative; height: 96px; }
+  .frame .body { padding: var(--sp-3); }
+  .frame .role { font-size: 10px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-tertiary); margin-bottom: 4px; }
+  .frame h3 { font-size: 13px; margin: 0 0 6px; }
+  .frame p { font-size: 12px; color: var(--text-secondary); line-height: 1.55; margin: 0 0 8px; }
+  .frame .ref { font-size: 10px; color: var(--text-tertiary); }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="brand">DESFlix</div>
+  <div class="navlinks">
+    <a href="home.html">Home</a>
+    <a href="leaderboard.html">Leaderboard</a>
+    <a href="creator-studio.html">Creator Studio</a>
+    <a href="node-dashboard.html">Node Dashboard</a>
+    <a href="wallet.html">Wallet</a>
+    <a class="active" href="storyboard.html">Storyboard</a>
+  </div>
+  <div class="navright">
+    <div class="token-pill">1,240 DSF</div>
+    <div class="avatar">JS</div>
+  </div>
+</nav>
+
+<div class="wrap" style="padding-top:24px;">
+  <h1 style="margin:0 0 4px; font-size:22px;">End-to-end storyboard</h1>
+  <p style="color:var(--text-secondary); font-size:13px; margin:0 0 24px; max-width:680px;">
+    One title's path from script to viewer payout to advertiser placement,
+    frame by frame. Each frame names the doc section it implements so the
+    visual sequence and the written dataflows never drift apart. This is a
+    journey sketch, not a fifth persona screen &mdash; it exists to check the
+    other six mockups actually compose into one coherent flow.
+  </p>
+
+  <div class="frame-grid">
+    <div class="frame">
+      <div class="art placeholder-art"><span class="num">01</span></div>
+      <div class="body">
+        <div class="role">Creator</div>
+        <h3>Submit script + design refs</h3>
+        <p>Storyboard, voice/style references, rights attestation submitted via Creator Studio.</p>
+        <div class="ref">docs/dataflows.md flow 1</div>
+      </div>
+    </div>
+    <div class="frame">
+      <div class="art placeholder-art"><span class="num">02</span></div>
+      <div class="body">
+        <div class="role">Scheduler</div>
+        <h3>Render job routed &amp; verified</h3>
+        <p>Sensitivity classification decides P2P pool vs. cloud burst; redundant runs verify output.</p>
+        <div class="ref">docs/p2p-rendering.md &sect;3&ndash;4</div>
+      </div>
+    </div>
+    <div class="frame">
+      <div class="art placeholder-art"><span class="num">03</span></div>
+      <div class="body">
+        <div class="role">Gate pipeline</div>
+        <h3>Compliance &rarr; QC &rarr; jury &rarr; curator</h3>
+        <p>Five-stage review; Stage 5 human curator is mandatory, not a spot-check.</p>
+        <div class="ref">docs/content-quality-gates.md</div>
+      </div>
+    </div>
+    <div class="frame">
+      <div class="art placeholder-art"><span class="num">04</span></div>
+      <div class="body">
+        <div class="role">Catalog</div>
+        <h3>Published, with lineage attached</h3>
+        <p>Title appears on Home carrying its AI-origin disclosure and gate status &mdash; never bare.</p>
+        <div class="ref">mockups/home.html</div>
+      </div>
+    </div>
+
+    <div class="frame">
+      <div class="art placeholder-art"><span class="num">05</span></div>
+      <div class="body">
+        <div class="role">Viewer</div>
+        <h3>Watch &amp; rate</h3>
+        <p>Watch-session telemetry confirms genuine viewing before a rating is payout-eligible.</p>
+        <div class="ref">mockups/watch.html</div>
+      </div>
+    </div>
+    <div class="frame">
+      <div class="art placeholder-art"><span class="num">06</span></div>
+      <div class="body">
+        <div class="role">Identity service</div>
+        <h3>Trust check before payout</h3>
+        <p>Low-trust or farmed accounts are down-weighted or excluded from payout and ranking.</p>
+        <div class="ref">docs/dataflows.md flow 2</div>
+      </div>
+    </div>
+    <div class="frame">
+      <div class="art placeholder-art"><span class="num">07</span></div>
+      <div class="body">
+        <div class="role">Wallet + Leaderboard</div>
+        <h3>Payout and ranking, kept separate</h3>
+        <p>Capped stipend lands in the wallet; the public rank moves on engagement-weighted signal.</p>
+        <div class="ref">docs/tokenomics.md D2</div>
+      </div>
+    </div>
+    <div class="frame">
+      <div class="art placeholder-art"><span class="num">08</span></div>
+      <div class="body">
+        <div class="role">Advertiser</div>
+        <h3>Bid on the now-trending title</h3>
+        <p>Popularity + creator opt-in + brand-safety check unlock a scoped re-render placement.</p>
+        <div class="ref">docs/advertising-product-placement.md</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title"><h2>Where this exposes a gap</h2></div>
+  <div class="panel">
+    <p style="font-size:12px; color:var(--text-secondary); line-height:1.7; margin:0;">
+      Frame 02's node operator doesn't reappear until payout &mdash; there's no
+      frame showing the operator learning a job was assigned or disputed in
+      real time. That's a legitimate gap in this storyboard (the Node
+      Dashboard mockup covers it after the fact, not during), not a claim
+      that the product doesn't need it. Left open rather than papered over.
+    </p>
+  </div>
+
+  <footer class="note">
+    Mockup only, static HTML. Frame order mirrors <code>docs/dataflows.md</code>
+    flows 1, 2, and 4 concatenated into one title's journey; it does not
+    introduce any mechanism not already specified there.
+  </footer>
+</div>
+</body>
+</html>
