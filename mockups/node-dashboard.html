@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>DESFlix — Node Dashboard</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="brand">DESFlix</div>
+  <div class="navlinks">
+    <a href="home.html">Home</a>
+    <a href="leaderboard.html">Leaderboard</a>
+    <a href="creator-studio.html">Creator Studio</a>
+    <a class="active" href="node-dashboard.html">Node Dashboard</a>
+    <a href="wallet.html">Wallet</a>
+  </div>
+  <div class="navright">
+    <div class="token-pill">&#9679; 1,240 DSF</div>
+    <div class="avatar">JS</div>
+  </div>
+</nav>
+
+<div class="wrap" style="padding-top:24px;">
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; flex-wrap:wrap; gap:10px;">
+    <h1 style="margin:0; font-size:24px;">Node Operator Dashboard</h1>
+    <span class="badge gate">Node status: Eligible</span>
+  </div>
+
+  <div class="grid-4" style="margin-bottom:24px;">
+    <div class="stat-tile">
+      <div class="label">Staked amount</div>
+      <div class="value">2,000 DSF</div>
+    </div>
+    <div class="stat-tile">
+      <div class="label">Reliability reputation</div>
+      <div class="value">97.2%</div>
+      <div class="delta up">&#9650; 0.4% this week</div>
+    </div>
+    <div class="stat-tile">
+      <div class="label">Capability tier</div>
+      <div class="value">Tier 2 — GPU 24GB</div>
+    </div>
+    <div class="stat-tile">
+      <div class="label">Earnings (30d)</div>
+      <div class="value" style="color:var(--gold);">6,140 DSF</div>
+    </div>
+  </div>
+
+  <div class="section-title"><h2>Recent render attempts</h2></div>
+  <div class="panel">
+    <table class="list">
+      <thead>
+        <tr>
+          <th>Job</th>
+          <th>Verification tier</th>
+          <th>Result</th>
+          <th>Peer agreement</th>
+          <th>Payout</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>job-4471</td>
+          <td>Standard (2x)</td>
+          <td><span class="badge gate">Verified</span></td>
+          <td>Match — 1 peer</td>
+          <td style="color:var(--gold);">+18 DSF</td>
+        </tr>
+        <tr>
+          <td>job-4398</td>
+          <td>High (3x)</td>
+          <td><span class="badge gate">Verified</span></td>
+          <td>Match — 2 peers</td>
+          <td style="color:var(--gold);">+31 DSF</td>
+        </tr>
+        <tr>
+          <td>job-4390</td>
+          <td>Standard (2x)</td>
+          <td style="color:var(--down); font-weight:600;">Disputed</td>
+          <td>Disagreement — sent to arbitration</td>
+          <td style="color:var(--text-dim);">Pending</td>
+        </tr>
+        <tr>
+          <td>job-4381</td>
+          <td>Low (spot-check)</td>
+          <td><span class="badge gate">Verified</span></td>
+          <td>Audited, no issue</td>
+          <td style="color:var(--gold);">+9 DSF</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="grid-2" style="margin-top:20px;">
+    <div class="panel">
+      <div style="font-size:13px; font-weight:700; margin-bottom:8px;">Job routing exposure</div>
+      <p style="font-size:12px; color:var(--text-muted); line-height:1.7; margin:0;">
+        Your node is currently eligible for <b>public-domain-style / low IP
+        risk</b> jobs only, per <code>docs/p2p-rendering.md</code> §4. Higher-
+        sensitivity job eligibility requires a confidentiality agreement and
+        higher stake tier.
+      </p>
+      <button class="btn small" style="margin-top:12px;">Request higher sensitivity tier</button>
+    </div>
+    <div class="panel">
+      <div style="font-size:13px; font-weight:700; margin-bottom:8px;">Stake &amp; slashing</div>
+      <p style="font-size:12px; color:var(--text-muted); line-height:1.7; margin:0;">
+        Stake is slashed only for verified-incorrect output, not for late
+        or dropped jobs (those affect scheduling priority instead) — see
+        <code>docs/dataflows.md</code> flow 3.
+      </p>
+      <button class="btn small" style="margin-top:12px;">View slashing history (0 events)</button>
+    </div>
+  </div>
+
+  <footer class="note">
+    Mockup only. Payout amounts, reputation percentages, and job IDs are
+    illustrative placeholders — no token unit values are proposed anywhere
+    in this blueprint (<code>docs/tokenomics.md</code> §6).
+  </footer>
+</div>
+</body>
+</html>

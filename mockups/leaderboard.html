@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>DESFlix — Leaderboard</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="brand">DESFlix</div>
+  <div class="navlinks">
+    <a href="home.html">Home</a>
+    <a class="active" href="leaderboard.html">Leaderboard</a>
+    <a href="creator-studio.html">Creator Studio</a>
+    <a href="node-dashboard.html">Node Dashboard</a>
+    <a href="wallet.html">Wallet</a>
+  </div>
+  <div class="navright">
+    <div class="token-pill">&#9679; 1,240 DSF</div>
+    <div class="avatar">JS</div>
+  </div>
+</nav>
+
+<div class="wrap" style="padding-top:24px;">
+  <h1 style="margin:0 0 4px; font-size:24px;">Leaderboard</h1>
+  <p style="color:var(--text-muted); font-size:13px; margin:0 0 20px;">
+    Ranked by engagement-weighted signal (completion, rewatch, reputation-weighted
+    ratings) — not raw paid-rating volume. See <code>docs/tokenomics.md</code> §5.
+  </p>
+
+  <div style="display:flex; gap:8px; margin-bottom:18px; flex-wrap:wrap;">
+    <button class="btn primary small">All</button>
+    <button class="btn small">Sci-fi</button>
+    <button class="btn small">Comedy</button>
+    <button class="btn small">Drama</button>
+    <button class="btn small">Mini-series</button>
+    <button class="btn small">Film</button>
+  </div>
+
+  <div class="panel">
+    <table class="list">
+      <thead>
+        <tr>
+          <th style="width:36px;">#</th>
+          <th>Title</th>
+          <th>Genre</th>
+          <th>Engagement score</th>
+          <th>7-day trend</th>
+          <th>Placement status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="font-weight:800; color:var(--gold);">1</td>
+          <td style="font-weight:600;">Foundry Season 2</td>
+          <td><span class="badge">Sci-fi</span></td>
+          <td>94.2</td>
+          <td class="delta up">&#9650; 6.1%</td>
+          <td><span class="badge placement">Open for bids</span></td>
+        </tr>
+        <tr>
+          <td style="font-weight:800; color:var(--gold);">2</td>
+          <td style="font-weight:600;">Harbor Static</td>
+          <td><span class="badge">Sci-fi</span></td>
+          <td>91.8</td>
+          <td class="delta up">&#9650; 2.4%</td>
+          <td><span class="badge">Creator opt-out</span></td>
+        </tr>
+        <tr>
+          <td style="font-weight:800; color:var(--gold);">3</td>
+          <td style="font-weight:600;">Midnight Ledger</td>
+          <td><span class="badge">Drama</span></td>
+          <td>89.0</td>
+          <td class="delta down">&#9660; 1.1%</td>
+          <td><span class="badge placement">Placement live</span></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Two-Chair Comedy</td>
+          <td><span class="badge">Comedy</span></td>
+          <td>85.4</td>
+          <td class="delta up">&#9650; 9.7%</td>
+          <td><span class="badge">Below threshold</span></td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Rendered Hearts</td>
+          <td><span class="badge">Drama</span></td>
+          <td>81.9</td>
+          <td class="delta up">&#9650; 0.6%</td>
+          <td><span class="badge">Below threshold</span></td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>Salt Line</td>
+          <td><span class="badge">Mini-series</span></td>
+          <td>77.3</td>
+          <td class="delta down">&#9660; 3.2%</td>
+          <td><span class="badge">Below threshold</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="grid-3" style="margin-top:20px;">
+    <div class="stat-tile">
+      <div class="label">What moves this ranking</div>
+      <div style="font-size:12px; color:var(--text-muted); line-height:1.6;">Completion rate, rewatch rate, reputation-weighted ratings. Raw paid-rating count is intentionally not shown or used directly.</div>
+    </div>
+    <div class="stat-tile">
+      <div class="label">Decay window</div>
+      <div style="font-size:12px; color:var(--text-muted); line-height:1.6;">Recent signal weighted higher than lifetime cumulative — reflects "what people want more of now," not an all-time list.</div>
+    </div>
+    <div class="stat-tile">
+      <div class="label">Placement eligibility</div>
+      <div style="font-size:12px; color:var(--text-muted); line-height:1.6;">Same ranking signal gates advertiser placement bids — one metric, not two separately-gameable ones.</div>
+    </div>
+  </div>
+
+  <footer class="note">
+    Mockup only. Numeric scores and trend percentages are illustrative
+    placeholders, not a proposed scoring formula.
+  </footer>
+</div>
+</body>
+</html>
