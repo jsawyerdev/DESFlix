@@ -1,72 +1,102 @@
 # DESFlix
 
-**D**istributed **E**ntertainment **S**ervice -- a blueprint for a curated,
-AI-generated streaming platform where writers/creators turn scripts and
-designs into full episodes/films via generative AI, rendered partly on a
-distributed (P2P) compute network, published only after passing an
-editorial quality bar, and ranked by a viewer leaderboard tied to a
-token-based rating-reward system. Companies can buy dynamic product
-placement in content that's trending.
+**Stories an AI can render, that still have to earn their spot.**
 
-**Status: blueprint only. No code in this repo, by design.** This is the
-pre-implementation design phase: architecture, dataflows, data model,
-economic model, and UI mockups, plus an explicit feasibility/risk analysis.
-See `ASSUMPTIONS_AND_RISK.md` before anything else -- several documents
-below make specific design choices in response to risks identified there.
+DESFlix is a streaming platform for AI-generated series, mini-series,
+films, and comedy, built on one bet: the bottleneck in AI content isn't
+generation, it's taste. Anyone can produce video now. Almost none of it is
+worth watching. DESFlix exists to be the place where that bar is real --
+five review stages between a script and a published title, nothing under
+a full episode ships, and the rendering compute that makes it affordable
+to independent writers comes from a distributed P2P network instead of a
+studio's server farm. Viewers get paid to rate what they watch. What
+people actually want more of decides the leaderboard -- and what earns
+advertiser placement.
 
-## Read order
+This repo is the complete pre-build blueprint: architecture, workflow,
+data model, token economics, and working UI mockups. No application code
+yet -- this is the design phase, done rigorously, including the parts
+that don't work yet and the assumptions that could be wrong.
 
-1. **[`ASSUMPTIONS_AND_RISK.md`](./ASSUMPTIONS_AND_RISK.md)** -- explicit
-   assumptions (`A1`-`A9`), fact/inference/speculation breakdown, competing
-   hypotheses on the platform's riskiest mechanism-design question
-   (pay-to-rate incentive integrity), falsification criteria, legal/
-   regulatory open questions, and a per-subsystem feasibility confidence
-   table. Read this first -- everything else builds on it.
-2. **[`docs/architecture.md`](./docs/architecture.md)** -- context diagram,
-   container diagram, subsystem responsibilities, deployment topology, and
-   a phased rollout that sequences the riskiest subsystems (P2P rendering,
-   token payouts) after the independently-defensible core product.
-3. **[`docs/dataflows.md`](./docs/dataflows.md)** -- four end-to-end sequence
-   diagrams: creator upload -> render -> publish; watch -> rate -> payout ->
-   leaderboard; compute contribution -> verification -> node payout;
-   advertiser placement -> dynamic render -> performance report. Each
-   includes the failure modes specific to that flow.
-4. **[`docs/content-quality-gates.md`](./docs/content-quality-gates.md)** --
-   the "no AI slop, no shorts, quality gates like Netflix" system: a
-   five-stage pipeline (automated compliance -> technical QC -> format
-   rules -> community jury -> professional curator), with an explicit
-   argument for why the last stage is mandatory rather than optional.
-5. **[`docs/p2p-rendering.md`](./docs/p2p-rendering.md)** -- the distributed
-   render network: node lifecycle, tiered verification model (and its real
-   cost), job routing by IP sensitivity, node economics, and collusion
-   resistance. Flagged throughout as the least-proven subsystem.
-6. **[`docs/tokenomics.md`](./docs/tokenomics.md)** -- the crypto payment
-   system: an open ledger-mechanism decision (`D1`), and a specific
-   recommendation (`D2`) for decoupling "get paid for rating" from "the
-   number that drives the public leaderboard," with the brief's literal
-   pay-per-rating-drives-leaderboard design documented alongside it as an
-   explicit alternative, not silently overridden.
-7. **[`docs/advertising-product-placement.md`](./docs/advertising-product-placement.md)**
- -- the "companies pay for placement when something's popular" system:
-   planned vs. reactive placement, the scoped-re-render mechanism that
-   makes reactive placement technically distinctive, marketplace flow, and
-   disclosure requirements.
-8. **[`docs/data-model.md`](./docs/data-model.md)** -- conceptual entity
-   relationships tying every subsystem's vocabulary together (no schema/
-   code), so "a rating," "a render job," "a placement campaign" mean the
-   same thing across every document above.
-9. **[`mockups/`](./mockups/)** -- static HTML/CSS UI mockups: home/discovery,
-   watch + rate player, leaderboard, creator studio, node operator
-   dashboard, wallet, and an end-to-end storyboard. Open
-   `mockups/index.html` in a browser, or see the screenshots below.
+## The problem
 
-## Mockup screenshots
+Generative video removed the cost of production and left the cost of
+judgment untouched. The result is a flood of technically-competent,
+narratively-empty content with nowhere selective enough to filter it and
+no economic reason for a platform to bother -- volume monetizes fine
+without curation. Writers and creators with a real story and no production
+budget get buried in the same feed as the flood. And the platforms best
+positioned to fix this have no incentive to: engagement, not quality, is
+what they're built to maximize.
 
-Rendered from the actual HTML/CSS in `mockups/` (headless Chrome, 1280px
-viewport) -- these are literal screenshots of the files in this repo, not
-separate artwork, so they can't drift from what `mockups/index.html`
-actually shows. Design references and rationale for the visual system are
-documented in `mockups/index.html` itself ("UI design references" section).
+## The idea
+
+Put a real editorial bar between generation and publication, make the
+compute cheap enough with distributed rendering that an independent
+creator can actually afford to clear that bar, and pay the audience
+directly for the one thing that's currently free and unrewarded: having
+taste and saying so.
+
+## How it works
+
+```mermaid
+flowchart LR
+    A[Creator submits\nscript + style refs] --> B[Rendered via P2P\nnetwork + cloud burst]
+    B --> C[Five-stage\nquality gate]
+    C --> D[Published,\nlineage attached]
+    D --> E[Viewer watches,\nrates or downvotes]
+    E --> F[Capped stipend paid +\nleaderboard updates]
+    F --> G[Popular titles unlock\nadvertiser placement]
+    B --> H[Node operators paid\nfor verified renders]
+```
+
+1. **A creator submits a project.** Script, storyboard, voice and visual
+   style references, in the Creator Studio -- see the mockup.
+2. **It gets rendered.** Scenes are broken into jobs and routed either to
+   the P2P compute network or to centralized cloud burst capacity,
+   depending on how IP-sensitive or plot-critical the shot is. P2P jobs
+   are verified by independent, redundant runs before anything is
+   accepted -- a node doesn't get paid for output nobody else can confirm.
+3. **It passes a five-stage quality gate.** Automated compliance and
+   technical QC, a hard runtime floor that rules out short-form filler
+   dressed up as an episode, a community jury, then a professional
+   curator review that is mandatory for every title, not a spot-check.
+   This is the "no AI slop, quality gates like Netflix" requirement,
+   built as a structural pipeline rather than a promise.
+4. **It publishes with its lineage attached.** Every title carries a
+   visible record of what was AI-generated and what was human-authored,
+   plus its full gate history. Nothing ships as an opaque black box.
+5. **Viewers watch, rate or downvote, and get paid.** The payout is a
+   flat, capped, identity-gated stipend, not an open-ended reward per
+   rating -- deliberately, because an open-ended reward for the exact
+   number that also ranks content is a well-documented way to get bots
+   instead of taste. More on this below.
+6. **The leaderboard tracks real demand.** Ranked by completion rate,
+   rewatch rate, and reputation-weighted rating, decaying over a rolling
+   window, broken out by genre. Not by raw vote count. This is the signal
+   that tells creators and the platform what people actually want more of
+   -- the mechanism the original brief asked for.
+7. **Popular titles unlock advertiser placement.** Because the content is
+   rendered rather than filmed, a brand deal can be a scoped re-render of
+   one prop or one background, not a reshoot -- with creator opt-in and
+   revenue share, gated by the same brand-safety review as everything
+   else.
+8. **Compute contributors get paid for verified work.** Node operators
+   earn for render jobs their output survives independent verification
+   on. Stake is slashed only for provably wrong output, never for being
+   slow.
+
+The full technical version of this flow, with failure modes named at each
+step, is in [`docs/dataflows.md`](./docs/dataflows.md). The same sequence,
+sketched frame by frame with the same terminology, is
+[`mockups/storyboard.html`](./mockups/storyboard.html).
+
+## See it
+
+Actual screenshots of the HTML/CSS in `mockups/` -- headless Chrome, 1280px
+viewport. These can't drift from what the files in this repo show, because
+they're captures of those files, not separate artwork. Design rationale is
+in `mockups/index.html`'s "UI design references" section.
 
 | | |
 |---|---|
@@ -79,46 +109,77 @@ documented in `mockups/index.html` itself ("UI design references" section).
 | **[End-to-End Storyboard](./mockups/storyboard.html)** | |
 | [![Storyboard screen](./mockups/screenshots/storyboard.png)](./mockups/storyboard.html) | |
 
-## What this blueprint deliberately does NOT claim
+## What makes it different
 
-- That the P2P rendering network is cost-effective versus centralized cloud
-  GPU -- this is explicitly unproven (`ASSUMPTIONS_AND_RISK.md` sec. 2.3, sec. 6)
-  and gated behind a pilot in the phased rollout.
-- That paying users directly for the exact rating that drives a public
-  leaderboard is a safe design -- the dominant historical pattern in
-  comparable systems is Sybil/bot degradation (`ASSUMPTIONS_AND_RISK.md`
-  sec. 3), which is why `docs/tokenomics.md` recommends decoupling payout from
-  ranking signal rather than building the brief's literal mechanism as
-  stated.
-- That the token avoids securities or money-transmission regulatory
-  exposure -- genuinely unresolved, flagged for counsel
-  (`ASSUMPTIONS_AND_RISK.md` sec. 5), not guessed at.
-- That an automated system can reliably judge creative quality at a
-  "Netflix-grade" bar -- low confidence; the quality-gate pipeline keeps a
-  mandatory human curator stage specifically because of this
-  (`docs/content-quality-gates.md` sec. 2).
+- **A quality gate with teeth.** Five stages, and the human curator stage
+  is mandatory for every title -- not because automated slop-detection is
+  impossible, but because subjective creative quality is not the kind of
+  thing current classifiers judge at an editorial standard, and claiming
+  otherwise would be the one dishonest sentence in this pitch.
+- **P2P rendering, not just cloud rendering.** Independent creators get
+  production-grade compute without production-grade cloud bills, verified
+  by redundant runs instead of trust.
+- **Getting paid to have taste.** Rating pays -- capped and identity-gated,
+  so the reward can't be farmed at the scale that would corrupt it -- and
+  the public leaderboard runs on a separate, harder-to-game signal so the
+  number that pays you and the number that ranks content are never the
+  same number.
+- **Placement that only a rendered platform can do.** A branded prop can
+  be swapped into a scene that's already trending, without reshooting
+  anything -- a capability that doesn't exist for filmed content.
 
-## Key open parameters (not yet decided, intentionally)
+## The blueprint
 
-- Runtime floor for "no shorts" (episode/film minimums).
-- Ledger mechanism: public token vs. permissioned ledger vs. off-chain
-  points (`docs/tokenomics.md` `D1`).
-- Whether to build the brief's literal pay-per-rating leaderboard design or
-  the decoupled recommendation (`docs/tokenomics.md` `D2` vs `D2-alt`).
-- Target launch jurisdiction(s) (`ASSUMPTIONS_AND_RISK.md` `A9`) -- changes
-  the regulatory risk profile materially.
+- [`ASSUMPTIONS_AND_RISK.md`](./ASSUMPTIONS_AND_RISK.md) -- every
+  assumption this design rests on, stated explicitly, plus the
+  fact/inference/speculation breakdown and feasibility confidence behind
+  the claims made above.
+- [`docs/architecture.md`](./docs/architecture.md) -- context diagram,
+  container diagram, subsystem responsibilities, and a phased rollout that
+  sequences the riskiest subsystems after the independently-defensible
+  core product.
+- [`docs/dataflows.md`](./docs/dataflows.md) -- the four flows above as
+  full sequence diagrams, each with the failure modes specific to it.
+- [`docs/content-quality-gates.md`](./docs/content-quality-gates.md) --
+  the five-stage gate in full, including the operational rubric for what
+  "AI slop" actually means and its known Goodhart's-Law risk.
+- [`docs/p2p-rendering.md`](./docs/p2p-rendering.md) -- the distributed
+  render network: node lifecycle, tiered verification, job routing by IP
+  sensitivity, and why this is the least-proven subsystem here.
+- [`docs/tokenomics.md`](./docs/tokenomics.md) -- the payout and
+  leaderboard mechanism in full, including the open ledger decision (`D1`)
+  and the anti-Sybil design (`D2`).
+- [`docs/advertising-product-placement.md`](./docs/advertising-product-placement.md)
+  -- the placement marketplace, planned vs. reactive placement, and
+  disclosure requirements.
+- [`docs/data-model.md`](./docs/data-model.md) -- the conceptual entities
+  tying every subsystem's vocabulary together.
 
-## Assumptions summary
+## What we're still proving
 
-Full detail in `ASSUMPTIONS_AND_RISK.md` sec. 1; headline items:
+Three things here are designed-for, not demonstrated, and this blueprint
+says so on purpose instead of quietly hoping nobody asks:
 
-- "AI-generated" = full generative pipeline (script -> voice/style refs ->
-  rendered video), not AI-assisted VFX on live footage.
-- This is pre-seed planning: no existing users, catalog, or capital
-  assumed.
-- The cryptocurrency's exact mechanism (public chain vs. permissioned
-  ledger vs. points) is open -- only the user-facing outcome ("get paid for
-  rating") is treated as fixed by the brief.
-- Target jurisdiction defaults to a generic US/EU-facing consumer product
-  in the absence of a stated target market -- flagged as the weakest
-  assumption in the set, easiest to correct.
+- **Paying for ratings is a known way to buy bots instead of taste**,
+  unless the anti-Sybil design actually holds at scale. Every independent
+  token-curation platform with this pattern has this failure mode in its
+  history. The mitigation -- capped stipends decoupled from the ranking
+  signal -- is designed against that specific, repeated failure, not
+  against a hypothetical one. See `docs/tokenomics.md` `D2` and
+  `ASSUMPTIONS_AND_RISK.md` sec. 3.
+- **Volunteer P2P compute has real precedent for batch-tolerant, easy-to-
+  verify work.** Generative rendering is neither, and the redundant-run
+  verification this design requires may erase the cost advantage that's
+  the whole point of the P2P network. See `docs/p2p-rendering.md` sec. 3.
+- **Whether the token is a security or a money-transmission instrument is
+  an open legal question**, not a design decision this blueprint is
+  qualified to make. See `ASSUMPTIONS_AND_RISK.md` sec. 5.
+
+Full analysis, including what evidence would change our mind on each of
+these, is in `ASSUMPTIONS_AND_RISK.md`.
+
+## Status
+
+Blueprint complete: architecture, workflow, data model, tokenomics,
+quality-gate design, and working UI mockups. No application code exists
+yet -- that's the next phase, not this repo.
